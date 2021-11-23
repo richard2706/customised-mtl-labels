@@ -46,6 +46,6 @@ class User extends Authenticatable
      * Gets the user's intake profile.
      */
     public function intakeProfile() {
-        return $this->belongsTo(IntakeProfile::class);
+        return $this->hasOne(IntakeProfile::class);
     }
 }

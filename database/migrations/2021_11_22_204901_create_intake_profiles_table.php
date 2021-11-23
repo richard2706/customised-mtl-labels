@@ -14,13 +14,17 @@ class CreateIntakeProfilesTable extends Migration
     public function up()
     {
         Schema::create('intake_profiles', function (Blueprint $table) {
-            $table->id();
+            $table->unsignedBigInteger('user_id')->unique();
             $table->timestamps();
             $table->unsignedInteger('max_calories');
             $table->unsignedDouble('max_total_fat');
             $table->unsignedDouble('max_saturated_fat');
             $table->unsignedDouble('max_total_sugar');
             $table->unsignedDouble('max_salt');
+
+            $table->primary(['user_id']);
+            $table->foreign('user_id')->references('id')->on('users')
+                ->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 
