@@ -27,5 +27,11 @@ class IntakeProfileSeeder extends Seeder
         $johnathonUser = User::find(1);
         $johnathonIntakeProfile->user()->associate($johnathonUser);
         $johnathonIntakeProfile->save();
+
+        // Create an intake profile for each user
+        $allUsers = User::get()->except([1]);
+        foreach ($allUsers as $user) {
+            IntakeProfile::factory()->for($user)->create();
+        }
     }
 }
