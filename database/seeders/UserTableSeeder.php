@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\IntakeProfile;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -17,21 +16,14 @@ class UserTableSeeder extends Seeder
     {
         // Create an example user
         $user1 = new User;
-        $user1->name = "John";
-        $user1->email = "john@gmail.com";
+        $user1->name = "Johnathon";
+        $user1->email = "johnny@gmail.com";
         $user1->password = "pass1";
         $user1->gender = "male";
         $user1->age_category = "19-64";
-
-        // Save the user with the intake profile
-        $profile1 = IntakeProfile::find(1);
-        $user1->intakeProfile()->associate($profile1);
         $user1->save();
 
-        // Randomly generate a user for each intake profile
-        $intakeProfiles = IntakeProfile::get()->except([1]);
-        foreach ($intakeProfiles as $intakeProfile) {
-            User::factory()->for($intakeProfile)->create();
-        }
+        // Create 15 random users
+        User::factory()->count(15)->create();
     }
 }

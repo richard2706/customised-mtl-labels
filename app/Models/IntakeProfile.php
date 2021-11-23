@@ -13,6 +13,6 @@ class IntakeProfile extends Model
      * Gets the user who has this intake profile.
      */
     public function user() {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 }
