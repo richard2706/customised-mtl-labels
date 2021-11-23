@@ -27,5 +27,11 @@ class UserTableSeeder extends Seeder
         $profile1 = IntakeProfile::find(1);
         $user1->intakeProfile()->associate($profile1);
         $user1->save();
+
+        // Randomly generate a user for each intake profile
+        $intakeProfiles = IntakeProfile::get()->except([1]);
+        foreach ($intakeProfiles as $intakeProfile) {
+            User::factory()->for($intakeProfile)->create();
+        }
     }
 }
