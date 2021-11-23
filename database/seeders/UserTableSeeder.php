@@ -14,6 +14,7 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
+        // Create an example user
         $user1 = new User;
         $user1->name = "Johnathon";
         $user1->email = "johnny@gmail.com";
