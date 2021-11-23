@@ -21,10 +21,6 @@ class CreateIntakeProfilesTable extends Migration
             $table->unsignedDouble('max_saturated_fat');
             $table->unsignedDouble('max_total_sugar');
             $table->unsignedDouble('max_salt');
-            $table->unsignedBigInteger('user_id')->unique();
-
-            $table->foreign('user_id')->references('id')->on('users')
-                ->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 
