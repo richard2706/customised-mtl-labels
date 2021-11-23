@@ -22,5 +22,7 @@ class UserTableSeeder extends Seeder
         $user1->gender = "male";
         $user1->age_category = "19-64";
         $user1->save();
+
+        User::factory()->count(15)->create();
     }
 }
