@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\IntakeProfile;
+use Database\Factories\IntakeProfileFactory;
 use Illuminate\Database\Seeder;
 
 class IntakeProfileTableSeeder extends Seeder
@@ -22,5 +23,7 @@ class IntakeProfileTableSeeder extends Seeder
         $profile1->max_total_sugar = 65;
         $profile1->max_salt = 5.8;
         $profile1->save();
+
+        IntakeProfile::factory()->count(15)->create();
     }
 }
