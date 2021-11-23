@@ -41,4 +41,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Gets the user's intake profile.
+     */
+    public function intakeProfile() {
+        return $this->belongsTo(IntakeProfile::class);
+    }
 }
