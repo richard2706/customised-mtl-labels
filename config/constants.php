@@ -114,7 +114,7 @@ return [
                 'salt' => 6,
                 'fibre' => 30,
             ],
-            '65-74_female' => [
+            'female' => [
                 'calories' => 1912,
                 'protein' => 46.5,
                 'total_fat' => 74,
