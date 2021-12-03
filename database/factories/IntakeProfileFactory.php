@@ -7,21 +7,18 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class IntakeProfileFactory extends Factory
 {
     /**
-     * Define the model's default state.
+     * Define the model's default state as the adult reference intake values.
      *
      * @return array
      */
     public function definition()
     {
-        $maxTotalFat = $this->faker->randomFloat(1, 50, 100);
-        $maxSaturatedFat = $this->faker->randomFloat(1, 0.25 * $maxTotalFat, 0.5 * $maxTotalFat);
-
         return [
-            'max_calories' => $this->faker->numberBetween(1750, 2750),
-            'max_total_fat' => $maxTotalFat,
-            'max_saturated_fat' => $maxSaturatedFat,
-            'max_total_sugar' => $this->faker->randomFloat(1, 40, 60),
-            'max_salt' => $this->faker->randomFloat(1, 5, 7),
+            'max_calories' => 2000,
+            'max_total_fat' => 70,
+            'max_saturated_fat' => 20,
+            'max_total_sugar' => 90,
+            'max_salt' => 6,
         ];
     }
 }
