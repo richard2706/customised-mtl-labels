@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->enum('gender', ['male', 'female'])->nullable();
-            $table->enum('age_category', ['1', '2-3', '4-6', '7-10', '11-14', '15-18', '19-64', '65-74', '75+']);
+            $table->enum('age_category', config('constants.age_categories'));
         });
     }
 

@@ -14,7 +14,7 @@ class UserFactory extends Factory
      */
     public function definition()
     {
-        $ageCategories = ['1', '2-3', '4-6', '7-10', '11-14', '15-18', '19-64', '65-74', '75+'];
+        $ageCategories = array_slice(config('constants.age_categories'), -4);
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
