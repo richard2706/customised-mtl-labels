@@ -19,7 +19,7 @@ class IntakeProfileFactory extends Factory
         return [
             'max_calories' => $this->faker->numberBetween(1750, 2750),
             'max_total_fat' => $maxTotalFat,
-            'max_saturated_fat' => $maxTotalFat,
+            'max_saturated_fat' => $maxSaturatedFat,
             'max_total_sugar' => $this->faker->randomFloat(1, 40, 60),
             'max_salt' => $this->faker->randomFloat(1, 5, 7),
         ];

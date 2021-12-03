@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\IntakeProfile;
-use Database\Factories\IntakeProfileFactory;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class IntakeProfileTableSeeder extends Seeder
@@ -15,15 +15,24 @@ class IntakeProfileTableSeeder extends Seeder
      */
     public function run()
     {
-        // Save an intake profile for the example user
-        $profile1 = new IntakeProfile;
-        $profile1->max_calories = 2000;
-        $profile1->max_total_fat = 100;
-        $profile1->max_saturated_fat = 50;
-        $profile1->max_total_sugar = 65;
-        $profile1->max_salt = 5.8;
-        $profile1->save();
+        // Create basic intake profile
+        $johnathonIntakeProfile = new IntakeProfile;
+        $johnathonIntakeProfile->max_calories = 2100;
+        $johnathonIntakeProfile->max_total_fat = 100;
+        $johnathonIntakeProfile->max_saturated_fat = 40;
+        $johnathonIntakeProfile->max_total_sugar = 65;
+        $johnathonIntakeProfile->max_salt = 5.8;
 
-        IntakeProfile::factory()->count(15)->create();
+        // Save the intake profile to the example user
+        $johnathonUser = User::find(1);
+        $johnathonIntakeProfile->user()->associate($johnathonUser);
+        $johnathonIntakeProfile->save();
+
+        // Create an intake profile for each user
+        $existingUserIds = [1];
+        $allRandomUsers = User::get()->except($existingUserIds);
+        foreach ($allRandomUsers as $user) {
+            IntakeProfile::factory()->for($user)->create();
+        }
     }
 }
