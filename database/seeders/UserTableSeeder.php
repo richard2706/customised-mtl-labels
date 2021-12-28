@@ -21,7 +21,7 @@ class UserTableSeeder extends Seeder
         $user1->email = "johnny@gmail.com";
         $user1->password = "pass1";
         $user1->gender = "male";
-        $user1->age_category = config('constants.age_categories')[4];
+        $user1->age_category = config('constants.default_age_category');
         $user1->save();
 
         // Create a number of random users

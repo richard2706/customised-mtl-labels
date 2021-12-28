@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\IntakeProfile;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -43,7 +44,11 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'age_category' => config('constants.default_age_category'),
         ]);
+
+        $intakeProfile = IntakeProfile::get_default_intake_profile($user->age_category);
+        $user->intakeProfile()->create($intakeProfile);
 
         event(new Registered($user));
 

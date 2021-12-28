@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->enum('gender', ['male', 'female'])->nullable();
+            $table->enum('gender', config('constants.genders'))->nullable();
             $table->enum('age_category', config('constants.age_categories'));
         });
     }

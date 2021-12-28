@@ -28,76 +28,42 @@ class IntakeProfileTableSeeder extends Seeder
         $johnathonUser = User::find(1);
         $johnathonIntakeProfile->user()->associate($johnathonUser);
         $johnathonIntakeProfile->save();
-
+        
         // Create an intake profile for each user
         $existingUserIds = [1];
         $allRandomUsers = User::get()->except($existingUserIds);
         foreach ($allRandomUsers as $user) {
             $defaultIntakeProfile = (isset($user->gender))
                 ? config('constants.default_intake_profiles')[$user->age_category][$user->gender]
-                : $this->get_genderless_intake_profile($user->age_category);
+                : IntakeProfile::get_default_intake_profile($user->age_category);
             
             $minTolerance = 1 - config('constants.customised_nutrient_boundary_factor');
             $maxTolerance = 1 + config('constants.customised_nutrient_boundary_factor');
-            $calories = random_int($minTolerance * $defaultIntakeProfile['calories'],
-                    $maxTolerance * $defaultIntakeProfile['calories']);
-            // $protein = $this->random_decimal($minTolerance * $defaultIntakeProfile['protein'],
-            //         $maxTolerance * $defaultIntakeProfile['protein']);
-            $totalFat = $this->random_decimal($minTolerance * $defaultIntakeProfile['total_fat'],
-                    $maxTolerance * $defaultIntakeProfile['total_fat']);
-            $saturatedFat = $this->random_decimal($minTolerance * $defaultIntakeProfile['saturated_fat'],
-                    $maxTolerance * $defaultIntakeProfile['saturated_fat']);
-            $totalSugar = $this->random_decimal($minTolerance * $defaultIntakeProfile['total_sugar'],
-                    $maxTolerance * $defaultIntakeProfile['total_sugar']);
-            $salt = $this->random_decimal($minTolerance * $defaultIntakeProfile['salt'],
-                    $maxTolerance * $defaultIntakeProfile['salt']);
-            // $fibre = $this->random_decimal($minTolerance * $defaultIntakeProfile['fibre'],
-            //         $maxTolerance * $defaultIntakeProfile['fibre']);
+            $calories = random_int($minTolerance * $defaultIntakeProfile['max_calories'],
+                    $maxTolerance * $defaultIntakeProfile['max_calories']);
+            // $protein = $this->random_decimal($minTolerance * $defaultIntakeProfile['min_protein'],
+            //         $maxTolerance * $defaultIntakeProfile['min_protein']);
+            $totalFat = $this->random_decimal($minTolerance * $defaultIntakeProfile['max_total_fat'],
+                    $maxTolerance * $defaultIntakeProfile['max_total_fat']);
+            $saturatedFat = $this->random_decimal($minTolerance * $defaultIntakeProfile['max_saturated_fat'],
+                    $maxTolerance * $defaultIntakeProfile['max_saturated_fat']);
+            $totalSugar = $this->random_decimal($minTolerance * $defaultIntakeProfile['max_total_sugar'],
+                    $maxTolerance * $defaultIntakeProfile['max_total_sugar']);
+            $salt = $this->random_decimal($minTolerance * $defaultIntakeProfile['max_salt'],
+                    $maxTolerance * $defaultIntakeProfile['max_salt']);
+            // $fibre = $this->random_decimal($minTolerance * $defaultIntakeProfile['min_fibre'],
+            //         $maxTolerance * $defaultIntakeProfile['min_fibre']);
 
             IntakeProfile::factory()->state([
                 'max_calories' => $calories,
-                // 'protein' => $protein,
+                // 'min_protein' => $protein,
                 'max_total_fat' => $totalFat,
                 'max_saturated_fat' => $saturatedFat,
                 'max_total_sugar' => $totalSugar,
                 'max_salt' => $salt,
-                // 'fibre' => $fibre,
+                // 'min_fibre' => $fibre,
             ])->for($user)->create();
         }
-    }
-
-    /**
-     * Returns an intake profile which has the average values of the male and female intake
-     * profiles for the given age category.
-     * 
-     * @return array Average intake profile for given age category.
-     */
-    private function get_genderless_intake_profile($age_category)
-    {
-        if (!in_array($age_category, config('constants.age_categories'))) {
-            throw new InvalidArgumentException('Age category does not exist.');
-        }
-
-        $maleIntakeProfile = config('constants.default_intake_profiles')[$age_category]['male'];
-        $femaleIntakeProfile = config('constants.default_intake_profiles')[$age_category]['female'];
-
-        $avgEnergyKcal = ($maleIntakeProfile['calories'] + $femaleIntakeProfile['calories']) / 2;
-        $avgProtein = ($maleIntakeProfile['protein'] + $femaleIntakeProfile['protein']) / 2;
-        $avgTotalfat = ($maleIntakeProfile['total_fat'] + $femaleIntakeProfile['total_fat']) / 2;
-        $avgSatFat = ($maleIntakeProfile['saturated_fat'] + $femaleIntakeProfile['saturated_fat']) / 2;
-        $avgTotalSugar = ($maleIntakeProfile['total_sugar'] + $femaleIntakeProfile['total_sugar']) / 2;
-        $avgSalt = ($maleIntakeProfile['salt'] + $femaleIntakeProfile['salt']) / 2;
-        $avgFibre = ($maleIntakeProfile['fibre'] + $femaleIntakeProfile['fibre']) / 2;
-
-        return [
-            'calories' => $avgEnergyKcal,
-            'protein' => $avgProtein,
-            'total_fat' => $avgTotalfat,
-            'saturated_fat' => $avgSatFat,
-            'total_sugar' => $avgTotalSugar,
-            'salt' => $avgSalt,
-            'fibre' => $avgFibre,
-        ];
     }
 
     /**
