@@ -13,17 +13,19 @@
                         <label for="gender">Gender</label><br>
                         <select name="gender">
                             @foreach (config('constants.genders') as $gender)
-                                <option value="{{ $gender }}">
-                                    {{ ucfirst($gender) }}
-                                </option>
+                            <option value="{{ $gender }}" @if ($user->gender == $gender) selected @endif>
+                                {{ ucfirst($gender) }}
+                            </option>
                             @endforeach
+                            <option value="{{ null }}" @if ($user->gender == null) selected @endif>
+                                Unspecified
+                            </option>
                         </select><br>
-
+                        
                         <label for="age-category">Age Category</label><br>
                         <select name="age-category">
                             @foreach (config('constants.age_categories') as $ageCategory)
-                                {{-- <option value="{{ $ageCategory }}" {{ @if ($user->ageCategory == $ageCategory) selected @endif}}> --}}
-                                <option value="{{ $ageCategory }}"}}>
+                                <option value="{{ $ageCategory }}" @if (strcmp($user->age_category, $ageCategory) == 0) selected @endif>
                                     {{ $ageCategory }}
                                 </option>
                             @endforeach
