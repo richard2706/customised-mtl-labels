@@ -3,6 +3,8 @@
 $constants = [
     'age_categories' => ['4-6', '7-10', '11-14', '15-18', '19-64', '65-74', '75+'],
 
+    'genders' => ['male', 'female'],
+
     'default_intake_profiles' => [
         '4-6' => [
             'male' => [
