@@ -45,7 +45,7 @@
                             </x-dropdown-link>
                         </form>
 
-                        <x-dropdown-link href="{{ route('settings') }}">
+                        <x-dropdown-link href="{{ route('user.settings') }}">
                             Settings
                         </x-dropdown-link>
                     </x-slot>

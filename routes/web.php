@@ -25,5 +25,7 @@ Route::get('/dashboard', function () {
 Route::get('/settings', [UserController::class, 'edit'])
     ->middleware(['auth'])->name('user.settings');
 
+Route::post('/settings/update/{user}', [UserController::class, 'update'])
+    ->middleware(['auth'])->name('user.update');
 
 require __DIR__.'/auth.php';
