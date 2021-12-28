@@ -11,7 +11,10 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <form method="POST" action="{{ route('user.update', compact('user')) }}">
                         @csrf
-                        
+
+                        <label for="name">Name</label><br>
+                        <input type="text" name="name" value="{{ $user->name }}"><br>
+
                         <label for="gender">Gender</label><br>
                         <select name="gender">
                             @foreach (config('constants.genders') as $gender)
