@@ -46,13 +46,13 @@ class IntakeProfile extends Model
         $maleIntake = config('constants.default_intake_profiles')[$ageCategory]['male'];
         $femaleIntake = config('constants.default_intake_profiles')[$ageCategory]['female'];
 
-        $avgEnergyKcal = ($maleIntake['calories'] + $femaleIntake['calories']) / 2;
-        // $avgProtein = ($maleIntake['protein'] + $femaleIntake['protein']) / 2;
-        $avgTotalfat = ($maleIntake['total_fat'] + $femaleIntake['total_fat']) / 2;
-        $avgSatFat = ($maleIntake['saturated_fat'] + $femaleIntake['saturated_fat']) / 2;
-        $avgTotalSugar = ($maleIntake['total_sugar'] + $femaleIntake['total_sugar']) / 2;
-        $avgSalt = ($maleIntake['salt'] + $femaleIntake['salt']) / 2;
-        // $avgFibre = ($maleIntake['fibre'] + $femaleIntake['fibre']) / 2;
+        $avgEnergyKcal = ($maleIntake['max_calories'] + $femaleIntake['max_calories']) / 2;
+        // $avgProtein = ($maleIntake['min_protein'] + $femaleIntake['min_protein']) / 2;
+        $avgTotalfat = ($maleIntake['max_total_fat'] + $femaleIntake['max_total_fat']) / 2;
+        $avgSatFat = ($maleIntake['max_saturated_fat'] + $femaleIntake['max_saturated_fat']) / 2;
+        $avgTotalSugar = ($maleIntake['max_total_sugar'] + $femaleIntake['max_total_sugar']) / 2;
+        $avgSalt = ($maleIntake['max_salt'] + $femaleIntake['max_salt']) / 2;
+        // $avgFibre = ($maleIntake['min_fibre'] + $femaleIntake['min_fibre']) / 2;
 
         return [
             'max_calories' => $avgEnergyKcal,
