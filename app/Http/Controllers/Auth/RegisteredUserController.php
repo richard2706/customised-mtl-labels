@@ -43,6 +43,7 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'age_category' => config('constants.default_age_category'),
         ]);
 
         event(new Registered($user));
