@@ -23,6 +23,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/settings', [UserController::class, 'edit'])
-    ->middleware(['auth'])->name('settings');
+    ->middleware(['auth'])->name('user.settings');
+
 
 require __DIR__.'/auth.php';
