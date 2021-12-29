@@ -10,7 +10,9 @@ enum AgeCategory: String
     case FIFTEEN_TO_EIGHTEEN = '15-18';
     case NINETEEN_TO_SIXTY_FOUR = '19-64';
     case SIXTY_FIVE_TO_SEVENTY_FOUR = '65-74';
-    case SEVENTY_FOUR_PLUS = '74+';
+    case SEVENTY_FIVE_PLUS = '75+';
+
+    public const DEFAULT = self::NINETEEN_TO_SIXTY_FOUR;
 }
 
 ?>

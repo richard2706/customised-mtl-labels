@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Enums\AgeCategory;
 use App\Http\Controllers\Controller;
 use App\Models\IntakeProfile;
 use App\Models\User;
@@ -44,7 +45,7 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'age_category' => config('constants.default_age_category'),
+            'age_category' => AgeCategory::DEFAULT->value,
         ]);
 
         $intakeProfile = IntakeProfile::getDefaultIntakeProfile($user->age_category);
