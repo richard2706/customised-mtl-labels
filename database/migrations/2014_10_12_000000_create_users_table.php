@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\Gender;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -21,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->enum('gender', config('constants.genders'))->nullable();
+            $table->enum('gender', array_column(Gender::cases(), 'value'))->nullable();
             $table->enum('age_category', config('constants.age_categories'));
         });
     }
