@@ -47,7 +47,7 @@ class RegisteredUserController extends Controller
             'age_category' => config('constants.default_age_category'),
         ]);
 
-        $intakeProfile = IntakeProfile::get_default_intake_profile($user->age_category);
+        $intakeProfile = IntakeProfile::getDefaultIntakeProfile($user->age_category);
         $user->intakeProfile()->create($intakeProfile);
 
         event(new Registered($user));

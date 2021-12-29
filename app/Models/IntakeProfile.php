@@ -37,7 +37,7 @@ class IntakeProfile extends Model
      * @param $ageCategory Age category for which to get the default profile
      * @return array Average intake profile for given age category.
      */
-    public static function get_default_intake_profile($ageCategory)
+    public static function getDefaultIntakeProfile($ageCategory)
     {
         if (!in_array($ageCategory, config('constants.age_categories'))) {
             throw new InvalidArgumentException('Age category does not exist.');
@@ -64,4 +64,6 @@ class IntakeProfile extends Model
             // 'min_fibre' => $avgFibre,
         ];
     }
+
+    public function max
 }
