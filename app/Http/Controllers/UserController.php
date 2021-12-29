@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -70,7 +71,20 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        return 'update settings';
+        if (Auth::user() != $user) {
+            return abort(401);
+        }
+
+        $request->validate([
+            'name' => ['required', 'max:255'],
+            'gender' => ['nullable', Rule::in(config('constants.genders'))],
+            'age_category' => ['required', Rule::in(config('constants.age_categories'))],
+        ]);
+
+        $user->update($request->only(['name', 'gender', 'age_category']));
+
+        return redirect()->route('user.settings')
+            ->with('message', 'Your settings have been updated.');
     }
 
     /**
