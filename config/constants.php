@@ -1,10 +1,6 @@
 <?php
 
-$constants = [
-    'age_categories' => ['4-6', '7-10', '11-14', '15-18', '19-64', '65-74', '75+'],
-
-    'genders' => ['male', 'female'],
-
+return [
     'default_intake_profiles' => [
         '4-6' => [
             'male' => [
@@ -151,11 +147,5 @@ $constants = [
     /* Maximum proportion by which a user can customise their personal daily intake amount by for each nutrient. */
     'customised_nutrient_boundary_factor' => 0.33,
 ];
-
-$constants += [
-    'default_age_category' => $constants['age_categories'][4],
-];
-
-return $constants;
 
 ?>
