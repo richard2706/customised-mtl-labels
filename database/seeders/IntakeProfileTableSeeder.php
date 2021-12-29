@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Enums\AgeCategory;
+use App\Enums\Gender;
 use App\Models\IntakeProfile;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -33,9 +35,9 @@ class IntakeProfileTableSeeder extends Seeder
         $existingUserIds = [1];
         $allRandomUsers = User::get()->except($existingUserIds);
         foreach ($allRandomUsers as $user) {
-            $defaultIntakeProfile = (isset($user->gender))
-                ? config('constants.default_intake_profiles')[$user->age_category][$user->gender]
-                : IntakeProfile::getDefaultIntakeProfile($user->age_category);
+            $ageCategory = AgeCategory::ageCategoryFromString($user->age_category);
+            $gender = Gender::genderFromString($user->gender);
+            $defaultIntakeProfile = $ageCategory->intakeProfile($gender);
             
             $minTolerance = 1 - config('constants.customised_nutrient_boundary_factor');
             $maxTolerance = 1 + config('constants.customised_nutrient_boundary_factor');

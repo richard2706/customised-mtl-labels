@@ -32,9 +32,6 @@
                                 {{ ucfirst($gender) }}
                             </option>
                             @endforeach
-                            <option value="{{ null }}" @if ($user->gender == null) selected @endif>
-                                Unspecified
-                            </option>
                         </select><br>
                         
                         <label for="age_category">Age Category</label><br>

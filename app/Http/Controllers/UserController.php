@@ -79,7 +79,7 @@ class UserController extends Controller
 
         $request->validate([
             'name' => ['required', 'max:255'],
-            'gender' => ['nullable', Rule::in(array_column(Gender::cases(), 'value'))],
+            'gender' => ['required', Rule::in(array_column(Gender::cases(), 'value'))],
             'age_category' => ['required', Rule::in(array_column(AgeCategory::cases(), 'value'))],
         ]);
 

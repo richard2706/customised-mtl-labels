@@ -32,14 +32,11 @@ enum AgeCategory: String
     /**
      * Gets the intake profile based on the gender.
      */
-    public function intakeProfile($gender)
+    public function intakeProfile(Gender $gender)
     {
-        if (isset($gender)) {
+        if ($gender != Gender::UNSPECIFIED) {
             return $this->genderedIntakeProfile($gender);
         } else {
-            $femaleIntake = $this->genderedIntakeProfile(Gender::FEMALE);
-            $maleIntake = $this->genderedIntakeProfile(Gender::MALE);
-
             return [
                 'max_calories' => $this->ungenderedCategoryIntake('max_calories'),
                 'min_protein' => $this->ungenderedCategoryIntake('min_protein'),
@@ -55,7 +52,7 @@ enum AgeCategory: String
     /**
      * Gets the intake profile for a specific the gender.
      */
-    private function genderedIntakeProfile($gender)
+    private function genderedIntakeProfile(Gender $gender)
     {
         switch ($gender) {
             case Gender::FEMALE:
@@ -193,7 +190,7 @@ enum AgeCategory: String
                 };
             
             default: // If gender is unspecified
-                throw new InvalidArgumentException('Gender cannot be null');
+                throw new InvalidArgumentException('Gender cannot be ' . Gender::UNSPECIFIED->value);
         }
     }
 

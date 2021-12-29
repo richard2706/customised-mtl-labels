@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->enum('gender', array_column(Gender::cases(), 'value'))->nullable();
+            $table->enum('gender', array_column(Gender::cases(), 'value'));
             $table->enum('age_category', array_column(AgeCategory::cases(), 'value'));
         });
     }

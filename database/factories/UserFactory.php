@@ -23,7 +23,8 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'gender' => $this->faker->optional(0.75)->randomElement(array_column(Gender::cases(), 'value')),
+            'gender' => $this->faker->randomElement(array_column(Gender::cases(), 'value')),
+            // 'gender' => null,
             'age_category' => $this->faker->randomElement($ageCategories),
         ];
     }

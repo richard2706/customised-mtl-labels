@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Enums\AgeCategory;
+use App\Enums\Gender;
 use App\Http\Controllers\Controller;
 use App\Models\IntakeProfile;
 use App\Models\User;
@@ -45,6 +46,7 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'gender' => Gender::UNSPECIFIED->value,
             'age_category' => AgeCategory::DEFAULT->value,
         ]);
 
