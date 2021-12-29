@@ -64,6 +64,4 @@ class IntakeProfile extends Model
             // 'min_fibre' => $avgFibre,
         ];
     }
-
-    public function max
 }
