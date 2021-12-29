@@ -39,7 +39,7 @@
                         
                         <label for="age_category">Age Category</label><br>
                         <select name="age_category">
-                            @foreach (config('constants.age_categories') as $ageCategory)
+                            @foreach (array_column(App\Enums\AgeCategory::cases(), 'value') as $ageCategory)
                                 <option value="{{ $ageCategory }}" @if (strcmp($user->age_category, $ageCategory) == 0) selected @endif>
                                     {{ $ageCategory }}
                                 </option>

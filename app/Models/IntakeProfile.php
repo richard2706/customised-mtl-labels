@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\AgeCategory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use InvalidArgumentException;
@@ -39,7 +40,7 @@ class IntakeProfile extends Model
      */
     public static function getDefaultIntakeProfile($ageCategory)
     {
-        if (!in_array($ageCategory, config('constants.age_categories'))) {
+        if (!in_array($ageCategory, array_column(AgeCategory::cases(), 'value'))) {
             throw new InvalidArgumentException('Age category does not exist.');
         }
 

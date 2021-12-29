@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\AgeCategory;
 use App\Enums\Gender;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -15,7 +16,7 @@ class UserFactory extends Factory
      */
     public function definition()
     {
-        $ageCategories = array_slice(config('constants.age_categories'), -4);
+        $ageCategories = array_slice(array_column(AgeCategory::cases(), 'value'), -4);
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),

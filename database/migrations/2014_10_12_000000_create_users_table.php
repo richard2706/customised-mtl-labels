@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\AgeCategory;
 use App\Enums\Gender;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -23,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->enum('gender', array_column(Gender::cases(), 'value'))->nullable();
-            $table->enum('age_category', config('constants.age_categories'));
+            $table->enum('age_category', array_column(AgeCategory::cases(), 'value'));
         });
     }
 
