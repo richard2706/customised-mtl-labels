@@ -27,7 +27,7 @@
 
                         <label for="gender">Gender</label><br>
                         <select name="gender">
-                            @foreach (config('constants.genders') as $gender)
+                            @foreach (array_column(App\Enums\Gender::cases(), 'value') as $gender)
                             <option value="{{ $gender }}" @if ($user->gender == $gender) selected @endif>
                                 {{ ucfirst($gender) }}
                             </option>
@@ -48,6 +48,8 @@
 
                         <input type="submit" value="Save Settings">
                     </form>
+
+                    {{-- <p>{{ App\Enums\Gender::MALE }}</p> --}}
                 </div>
             </div>
         </div>

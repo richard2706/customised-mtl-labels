@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Gender;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -77,7 +78,7 @@ class UserController extends Controller
 
         $request->validate([
             'name' => ['required', 'max:255'],
-            'gender' => ['nullable', Rule::in(config('constants.genders'))],
+            'gender' => ['nullable', Rule::in(array_column(Gender::cases(), 'value'))],
             'age_category' => ['required', Rule::in(config('constants.age_categories'))],
         ]);
 
