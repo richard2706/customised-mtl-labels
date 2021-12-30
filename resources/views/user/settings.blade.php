@@ -55,25 +55,25 @@
                         <div>
                             <label for="max_">Maximum Total Fat</label>
                             <p>{{ $ageCategory->minCategoryIntake($gender, 'max_total_fat') }} to {{ $ageCategory->maxCategoryIntake($gender, 'max_total_fat') }}</p>
-                            <input type="number" name="max_total_fat" value="{{ $user->intakeProfile->max_total_fat }}">
+                            <input type="number" step=".1" name="max_total_fat" value="{{ $user->intakeProfile->max_total_fat }}">
                         </div>
 
                         <div>
                             <label for="max_">Maximum Saturated Fat</label>
                             <p>{{ $ageCategory->minCategoryIntake($gender, 'max_saturated_fat') }} to {{ $ageCategory->maxCategoryIntake($gender, 'max_saturated_fat') }}</p>
-                            <input type="number" name="max_saturated_fat" value="{{ $user->intakeProfile->max_saturated_fat }}">
+                            <input type="number" step=".1" name="max_saturated_fat" value="{{ $user->intakeProfile->max_saturated_fat }}">
                         </div>
 
                         <div>
                             <label for="max_">Maximum Total Sugar</label>
                             <p>{{ $ageCategory->minCategoryIntake($gender, 'max_total_sugar') }} to {{ $ageCategory->maxCategoryIntake($gender, 'max_total_sugar') }}</p>
-                            <input type="number" name="max_total_sugar" value="{{ $user->intakeProfile->max_total_sugar }}">
+                            <input type="number" step=".1" name="max_total_sugar" value="{{ $user->intakeProfile->max_total_sugar }}">
                         </div>
 
                         <div>
                             <label for="max_">Maximum Salt</label>
                             <p>{{ $ageCategory->minCategoryIntake($gender, 'max_salt') }} to {{ $ageCategory->maxCategoryIntake($gender, 'max_salt') }}</p>
-                            <input type="number" name="max_salt" value="{{ $user->intakeProfile->max_salt }}">
+                            <input type="number" step=".1" name="max_salt" value="{{ $user->intakeProfile->max_salt }}">
                         </div>
 
                         <input type="submit" value="Save Settings">
