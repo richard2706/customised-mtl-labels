@@ -153,6 +153,12 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'max_calories' => 'maximum calories',
+        'max_total_fat' => 'maximum total fat',
+        'max_saturated_fat' => 'maximum saturated fat',
+        'max_total_sugar' => 'maximum total sugar',
+        'max_salt' => 'maximum salt',
+    ],
 
 ];
