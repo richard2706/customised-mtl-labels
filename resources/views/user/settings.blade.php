@@ -18,7 +18,8 @@
                     @if (session('message'))
                         <p>{{ session('message') }}</p>
                     @endif
-
+                    
+                    <h1>Your Settings</h1>
                     <form method="POST" action="{{ route('user.update', compact('user')) }}">
                         @csrf
 
@@ -27,18 +28,18 @@
 
                         <label for="gender">Gender</label><br>
                         <select name="gender">
-                            @foreach (array_column(App\Enums\Gender::cases(), 'value') as $gender)
-                            <option value="{{ $gender }}" @if ($user->gender == $gender) selected @endif>
-                                {{ ucfirst($gender) }}
+                            @foreach (array_column(App\Enums\Gender::cases(), 'value') as $genderValue)
+                            <option value="{{ $genderValue }}" @if ($user->gender == $genderValue) selected @endif>
+                                {{ ucfirst($genderValue) }}
                             </option>
                             @endforeach
                         </select><br>
                         
                         <label for="age_category">Age Category</label><br>
                         <select name="age_category">
-                            @foreach (array_column(App\Enums\AgeCategory::cases(), 'value') as $ageCategory)
-                                <option value="{{ $ageCategory }}" @if (strcmp($user->age_category, $ageCategory) == 0) selected @endif>
-                                    {{ $ageCategory }}
+                            @foreach (array_column(App\Enums\AgeCategory::cases(), 'value') as $ageCategoryValue)
+                                <option value="{{ $ageCategoryValue }}" @if (strcmp($user->age_category, $ageCategoryValue) == 0) selected @endif>
+                                    {{ $ageCategoryValue }}
                                 </option>
                             @endforeach
                         </select><br>
@@ -46,7 +47,14 @@
                         <input type="submit" value="Save Settings">
                     </form>
 
-                    {{-- <p>{{ App\Enums\Gender::MALE }}</p> --}}
+                    <h1>Your Intake Profile</h1>
+                    <form method="POST" action="{{ route('user.settings') }}">
+                        <div>
+                            <label for="max_calories">Maximum Calories</label>
+                            <p>{{ $ageCategory->minCategoryIntake($gender, 'max_calories') }} to {{ $ageCategory->maxCategoryIntake($gender, 'max_calories') }}</p>
+                            <input type="number" value="{{ $user->intakeProfile->max_calories }}">
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

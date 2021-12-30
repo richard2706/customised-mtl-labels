@@ -61,7 +61,9 @@ class UserController extends Controller
     public function edit()
     {
         $user = Auth::user();
-        return view('user.settings', compact('user'));
+        $ageCategory = AgeCategory::ageCategoryFromString($user->age_category);
+        $gender = Gender::genderFromString($user->gender);
+        return view('user.settings', compact('user', 'ageCategory', 'gender'));
     }
 
     /**
