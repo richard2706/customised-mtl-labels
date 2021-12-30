@@ -79,13 +79,49 @@ class UserController extends Controller
             return abort(401);
         }
 
+        // Validate the user settings
         $request->validate([
             'name' => ['required', 'max:255'],
             'gender' => ['required', Rule::in(array_column(Gender::cases(), 'value'))],
             'age_category' => ['required', Rule::in(array_column(AgeCategory::cases(), 'value'))],
         ]);
 
+        // Validate the intake profile values
+        $gender = Gender::genderFromString($request->gender);
+        $ageCategory = AgeCategory::ageCategoryFromString($request->age_category);
+        $maxIntakeProfile = $ageCategory->maxIntakeProfile($gender);
+        $minIntakeProfile = $ageCategory->minIntakeProfile($gender);
+        $request->validate([
+            'max_calories' => [
+                'required',
+                'lte:' . $maxIntakeProfile['max_calories'],
+                'gte:' . $minIntakeProfile['max_calories']
+            ],
+            'max_total_fat' => [
+                'required',
+                'lte:' . $maxIntakeProfile['max_total_fat'],
+                'gte:' . $minIntakeProfile['max_total_fat']
+            ],
+            'max_saturated_fat' => [
+                'required',
+                'lte:' . $maxIntakeProfile['max_saturated_fat'],
+                'gte:' . $minIntakeProfile['max_saturated_fat']
+            ],
+            'max_total_sugar' => [
+                'required',
+                'lte:' . $maxIntakeProfile['max_total_sugar'],
+                'gte:' . $minIntakeProfile['max_total_sugar']
+            ],
+            'max_salt' => [
+                'required',
+                'lte:' . $maxIntakeProfile['max_salt'],
+                'gte:' . $minIntakeProfile['max_salt']
+            ],
+        ]);
+
         $user->update($request->only(['name', 'gender', 'age_category']));
+        $user->intakeProfile()->update($request->only(['max_calories', 'max_total_fat',
+                'max_saturated_fat', 'max_total_sugar', 'max_salt']));
 
         return redirect()->route('user.settings')
             ->with('message', 'Your settings have been updated.');

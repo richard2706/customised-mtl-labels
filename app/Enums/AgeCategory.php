@@ -50,7 +50,7 @@ enum AgeCategory: String
     }
 
     /**
-     * Gets the maximum intake for each categories.
+     * Gets the maximum intake for each category.
      */
     public function maxIntakeProfile(Gender $gender)
     {
@@ -61,7 +61,7 @@ enum AgeCategory: String
     }
 
     /**
-     * Gets the minimum intake for the given category.
+     * Gets the minimum intake for each category.
      */
     public function minIntakeProfile(Gender $gender)
     {
@@ -69,6 +69,24 @@ enum AgeCategory: String
             $multiplier = 1 - config('constants.customised_nutrient_boundary_factor');
             return round($value * $multiplier, 1);
         }, $this->defaultIntakeProfile($gender));
+    }
+
+    /**
+     * Gets the maximum intake for the given category.
+     */
+    public function maxCategoryIntake(Gender $gender, $category)
+    {
+        $multiplier = 1 + config('constants.customised_nutrient_boundary_factor');
+        return round($this->defaultIntakeProfile($gender)[$category] * $multiplier);
+    }
+
+    /**
+     * Gets the maximum intake for the given category.
+     */
+    public function minCategoryIntake(Gender $gender, $category)
+    {
+        $multiplier = 1 - config('constants.customised_nutrient_boundary_factor');
+        return round($this->defaultIntakeProfile($gender)[$category] * $multiplier);
     }
 
     /**

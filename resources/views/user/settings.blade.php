@@ -44,11 +44,8 @@
                             @endforeach
                         </select><br>
 
-                        <input type="submit" value="Save Settings">
-                    </form>
+                        <h1>Your Intake Profile</h1>
 
-                    <h1>Your Intake Profile</h1>
-                    <form method="POST" action="{{ route('user.settings') }}">
                         <div>
                             <label for="max_calories">Maximum Calories</label>
                             <p>{{ $ageCategory->minCategoryIntake($gender, 'max_calories') }} to {{ $ageCategory->maxCategoryIntake($gender, 'max_calories') }}</p>
@@ -79,7 +76,7 @@
                             <input type="number" name="max_salt" value="{{ $user->intakeProfile->max_salt }}">
                         </div>
 
-                        <input type="submit" value="Save Intake Profile">
+                        <input type="submit" value="Save Settings">
                     </form>
                 </div>
             </div>
