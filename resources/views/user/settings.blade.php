@@ -52,8 +52,34 @@
                         <div>
                             <label for="max_calories">Maximum Calories</label>
                             <p>{{ $ageCategory->minCategoryIntake($gender, 'max_calories') }} to {{ $ageCategory->maxCategoryIntake($gender, 'max_calories') }}</p>
-                            <input type="number" value="{{ $user->intakeProfile->max_calories }}">
+                            <input type="number" name="max_calories" value="{{ $user->intakeProfile->max_calories }}">
                         </div>
+
+                        <div>
+                            <label for="max_">Maximum Total Fat</label>
+                            <p>{{ $ageCategory->minCategoryIntake($gender, 'max_total_fat') }} to {{ $ageCategory->maxCategoryIntake($gender, 'max_total_fat') }}</p>
+                            <input type="number" name="max_total_fat" value="{{ $user->intakeProfile->max_total_fat }}">
+                        </div>
+
+                        <div>
+                            <label for="max_">Maximum Saturated Fat</label>
+                            <p>{{ $ageCategory->minCategoryIntake($gender, 'max_saturated_fat') }} to {{ $ageCategory->maxCategoryIntake($gender, 'max_saturated_fat') }}</p>
+                            <input type="number" name="max_saturated_fat" value="{{ $user->intakeProfile->max_saturated_fat }}">
+                        </div>
+
+                        <div>
+                            <label for="max_">Maximum Total Sugar</label>
+                            <p>{{ $ageCategory->minCategoryIntake($gender, 'max_total_sugar') }} to {{ $ageCategory->maxCategoryIntake($gender, 'max_total_sugar') }}</p>
+                            <input type="number" name="max_total_sugar" value="{{ $user->intakeProfile->max_total_sugar }}">
+                        </div>
+
+                        <div>
+                            <label for="max_">Maximum Salt</label>
+                            <p>{{ $ageCategory->minCategoryIntake($gender, 'max_salt') }} to {{ $ageCategory->maxCategoryIntake($gender, 'max_salt') }}</p>
+                            <input type="number" name="max_salt" value="{{ $user->intakeProfile->max_salt }}">
+                        </div>
+
+                        <input type="submit" value="Save Intake Profile">
                     </form>
                 </div>
             </div>
