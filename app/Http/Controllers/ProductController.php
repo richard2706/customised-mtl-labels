@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use OpenFoodFacts;
 
 class ProductController extends Controller
 {
@@ -17,7 +18,8 @@ class ProductController extends Controller
      * Show the page which shows a label for the scanned product.
      */
     public function label(Request $request) {
-        dd($request);
+        $product = OpenFoodFacts::barcode($request->barcode);
+        dd($product);
     }
     
     /**
