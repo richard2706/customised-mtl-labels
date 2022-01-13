@@ -19,7 +19,7 @@ class ProductController extends Controller
      */
     public function label(Request $request) {
         $product = OpenFoodFacts::barcode($request->barcode);
-        dd($product);
+        return view('product.label', compact('product'));
     }
     
     /**
