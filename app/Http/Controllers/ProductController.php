@@ -12,6 +12,13 @@ class ProductController extends Controller
     public function showScanPage() {
         return view('product.scan');
     }
+
+    /**
+     * Show the page which shows a label for the scanned product.
+     */
+    public function label(Request $request) {
+        dd($request);
+    }
     
     /**
      * Display a listing of the resource.

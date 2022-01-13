@@ -32,4 +32,7 @@ Route::post('/settings/update/{user}', [UserController::class, 'update'])
 Route::get('/scan', [ProductController::class, 'showScanPage'])
     ->middleware(['auth'])->name('product.scan');
 
+Route::post('/scan/label', [ProductController::class, 'label'])
+    ->middleware(['auth'])->name('product.label');
+
 require __DIR__.'/auth.php';

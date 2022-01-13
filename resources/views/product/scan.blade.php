@@ -15,8 +15,7 @@
                         @endforeach
                     @endif
 
-                    {{-- <form method="POST" action="{{ route('submitbarcode') }}"> --}}
-                    <form method="POST" action="{{ route('find_product') }}">
+                    <form method="POST" action="{{ route('product.label') }}">
                         @csrf
 
                         <label for="name">Barcode number</label><br>
