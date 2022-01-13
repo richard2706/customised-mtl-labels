@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,8 +29,7 @@ Route::get('/settings', [UserController::class, 'edit'])
 Route::post('/settings/update/{user}', [UserController::class, 'update'])
     ->middleware(['auth'])->name('user.update');
 
-Route::get('/scan', function () {
-    return view('scan');
-})->middleware(['auth'])->name('scan');
+Route::get('/scan', [ProductController::class, 'showScanPage'])
+    ->middleware(['auth'])->name('product.scan');
 
 require __DIR__.'/auth.php';

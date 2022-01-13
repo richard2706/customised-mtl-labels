@@ -16,7 +16,7 @@
                     @endif
 
                     {{-- <form method="POST" action="{{ route('submitbarcode') }}"> --}}
-                    <form method="POST" action="">
+                    <form method="POST" action="{{ route('find_product') }}">
                         @csrf
 
                         <label for="name">Barcode number</label><br>
