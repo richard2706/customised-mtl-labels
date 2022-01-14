@@ -6,10 +6,11 @@ use Illuminate\View\Component;
 
 class MTLLabel extends Component
 {
-    /**
-     * Array containing the product details.
-     */
+    /**  */
     public $product;
+
+    /** Name of the product. */
+    // public $productName;
 
     /**
      * Create a new component instance.
@@ -17,8 +18,12 @@ class MTLLabel extends Component
      * @return void
      */
     public function __construct($product)
+    // public function __construct()
     {
+        $product['test_me'] = 'TEST'; // doesn't add this key to the array, cannot access in in component
         $this->product = $product;
+        // $this->productName = $product['product_name'];
+        // dd($this->product);
     }
 
     /**
@@ -28,6 +33,8 @@ class MTLLabel extends Component
      */
     public function render()
     {
+        // $productName = $this->productName;
+        // return view('components.mtl-label', ['productName' => 'TESTING']);
         return view('components.mtl-label');
     }
 }
