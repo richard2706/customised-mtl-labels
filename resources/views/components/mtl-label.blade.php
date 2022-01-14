@@ -1,3 +1,3 @@
 <div>
-    <p>Product Label Test</p>
+    <p>{{ $product['product_name'] }}</p>
 </div>
