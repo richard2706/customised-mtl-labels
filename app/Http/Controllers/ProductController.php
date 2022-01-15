@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\View\Components\ProductLabel;
 use Illuminate\Http\Request;
+use OpenFoodFacts;
 
 class ProductController extends Controller
 {
@@ -33,7 +33,8 @@ class ProductController extends Controller
     {
         // validate barcode and check product exists
 
-        return view('product.show', compact('barcode'));
+        $productName = OpenFoodFacts::barcode($barcode)['product_name'];
+        return view('product.show', compact('barcode', 'productName'));
     }
 
     // add function for barcode validation and checking product exists
