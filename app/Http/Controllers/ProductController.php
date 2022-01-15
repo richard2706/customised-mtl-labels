@@ -21,7 +21,9 @@ class ProductController extends Controller
     public function findProduct(Request $request)
     {
         // validate barcode and check product exists
-
+        $request->validate([
+            'barcode' => ['required', 'numeric'],
+        ]);
         $barcode = $request->barcode;
         return redirect()->route('product.show', compact('barcode'));
     }
