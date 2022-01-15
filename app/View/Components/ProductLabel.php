@@ -7,19 +7,19 @@ use OpenFoodFacts;
 
 class ProductLabel extends Component
 {
-    public $product;
-
-    public $test;
+    /** Name of the product. */
+    public $productName;
 
     /**
-     * Create a new component instance.
+     * Create a new product label component instance. Note that the barcode is assumed to be valid,
+     * since validation should be performed in a controller.
      *
      * @return void
      */
     public function __construct($barcode)
     {
-        $this->product = OpenFoodFacts::barcode($barcode);
-        $this->test = "hello";
+        $product = OpenFoodFacts::barcode($barcode);
+        $this->productName = $product['product_name'];
     }
 
     /**
