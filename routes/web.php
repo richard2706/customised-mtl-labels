@@ -29,10 +29,13 @@ Route::get('/settings', [UserController::class, 'edit'])
 Route::post('/settings/update/{user}', [UserController::class, 'update'])
     ->middleware(['auth'])->name('user.update');
 
-Route::get('/scan', [ProductController::class, 'showScanPage'])
+Route::get('/scan', [ProductController::class, 'scan'])
     ->middleware(['auth'])->name('product.scan');
 
-Route::post('/scan/label', [ProductController::class, 'label'])
-    ->middleware(['auth'])->name('product.label');
+Route::post('/scan', [ProductController::class, 'findProduct'])
+    ->middleware(['auth'])->name('product.find');
+
+Route::get('/product/{barcode}', [ProductController::class, 'label'])
+    ->middleware(['auth'])->name('product.show');
 
 require __DIR__.'/auth.php';

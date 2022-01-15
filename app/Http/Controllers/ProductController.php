@@ -2,25 +2,41 @@
 
 namespace App\Http\Controllers;
 
+use App\View\Components\ProductLabel;
 use Illuminate\Http\Request;
-use OpenFoodFacts;
 
 class ProductController extends Controller
 {
     /**
      * Display the page for scanning a new product
      */
-    public function showScanPage() {
+    public function scan()
+    {
         return view('product.scan');
     }
 
     /**
+     * Finds a product given a barcode number, then redirect to show the label.
+     */
+    public function findProduct(Request $request)
+    {
+        // validate barcode and check product exists
+
+        $barcode = $request->barcode;
+        return redirect()->route('product.show', compact('barcode'));
+    }
+    
+    /**
      * Show the page which shows a label for the scanned product.
      */
-    public function label(Request $request) {
-        $product = OpenFoodFacts::barcode($request->barcode);
-        return view('product.label', compact('product'));
+    public function label($barcode)
+    {
+        // validate barcode and check product exists
+
+        return view('product.show', compact('barcode'));
     }
+
+    // add function for barcode validation and checking product exists
     
     /**
      * Display a listing of the resource.

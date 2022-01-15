@@ -3,6 +3,7 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use OpenFoodFacts;
 
 class ProductLabel extends Component
 {
@@ -15,9 +16,9 @@ class ProductLabel extends Component
      *
      * @return void
      */
-    public function __construct($product)
+    public function __construct($barcode)
     {
-        $this->product = $product;
+        $this->product = OpenFoodFacts::barcode($barcode);
         $this->test = "hello";
     }
 
