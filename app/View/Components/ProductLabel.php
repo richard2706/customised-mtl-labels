@@ -3,6 +3,7 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use Illuminate\Support\Facades\Auth;
 use OpenFoodFacts;
 
 class ProductLabel extends Component
@@ -19,6 +20,9 @@ class ProductLabel extends Component
     /** Nutrition values per portion or 100g/ml */
     public $nutrientValues;
 
+    /** Percentages of user's intake for each nutrient. */
+    public $percentageIntakes;
+
     /** Energy values per 100 g/ml */
     public $energyKJPer100;
     public $energyKcalPer100;
@@ -27,9 +31,6 @@ class ProductLabel extends Component
     public $energyKJUnits;
     public $energyKcalUnits;
     public $productUnits;
-
-    /** Default value for unknown values. */
-    private const DEFAULT_VALUE = 'unknown';
 
     /**
      * Create a new product label component instance. Note that the barcode is assumed to be valid,
@@ -70,12 +71,29 @@ class ProductLabel extends Component
             // Get energy values per 100g/ml
             $this->energyKJPer100 = array_key_exists('energy-kj_100g', $product['nutriments']) ? $product['nutriments']['energy-kj_100g'] : null;
             $this->energyKcalPer100 = array_key_exists('energy-kcal_100g', $product['nutriments']) ? $product['nutriments']['energy-kcal_100g'] : null;
+            $this->energyKJUnits = array_key_exists('energy-kj_unit', $product['nutriments']) ? $product['nutriments']['energy-kj_unit'] : 'kJ';
+            $this->energyKcalUnits = array_key_exists('energy-kcal_unit', $product['nutriments']) ? $product['nutriments']['energy-kcal_unit'] : 'kcal';
+
+            // Calculate percentage of user's intake
+            $currentUser = Auth::user();
+            $userIntake = [
+                $labelKeys[1] => $currentUser->intakeProfile->max_calories,
+                $labelKeys[2] => $currentUser->intakeProfile->max_total_fat,
+                $labelKeys[3] => $currentUser->intakeProfile->max_saturated_fat,
+                $labelKeys[4] => $currentUser->intakeProfile->max_total_sugar,
+                $labelKeys[5] => $currentUser->intakeProfile->max_salt,
+            ];
+            // dd($this->nutrientValues);
+            // dd($userIntake);
+            // dd(strcmp('energy-kj', $labelKeys[0]));
+            foreach ($this->nutrientValues as $key => $value) {
+                if (!is_null($value) && strcmp($key, $labelKeys[0]) != 0) {
+                    $this->percentageIntakes[$key] = 100 * $this->nutrientValues[$key] / $userIntake[$key];
+                }
+            }
         } else {
             $this->labelSuccessful = false;
         }
-
-        $this->energyKJUnits = array_key_exists('energy-kj_unit', $product['nutriments']) ? $product['nutriments']['energy-kj_unit'] : 'kJ';
-        $this->energyKcalUnits = array_key_exists('energy-kcal_unit', $product['nutriments']) ? $product['nutriments']['energy-kcal_unit'] : 'kcal';
     }
 
     /**
