@@ -5,10 +5,10 @@
         <div>
             <p>Energy</p>
             @if (!is_null($nutrientValues['energy-kj']))
-                <p>{{ $nutrientValues['energy-kj'] }} {{ $energyKJUnits }}</p>
+                <p>{{ round($nutrientValues['energy-kj'], 1) }} {{ $energyKJUnits }}</p>
             @endif
             @if (!is_null($nutrientValues['energy-kcal']))
-                <p>{{ $nutrientValues['energy-kcal'] }} {{ $energyKcalUnits }}</p>
+                <p>{{ round($nutrientValues['energy-kcal'], 1) }} {{ $energyKcalUnits }}</p>
             @else
                 <p>Unknown calories</p>
             @endif
@@ -17,7 +17,7 @@
         <div>
             <p>Fat</p>
             @if (!is_null($nutrientValues['fat']))
-                <p>{{ $nutrientValues['fat'] }} {{ $productUnits }}</p>
+                <p>{{ round($nutrientValues['fat'], 1) }} {{ $productUnits }}</p>
             @else
                 <p>Unknown</p>
             @endif
@@ -25,7 +25,7 @@
         <div>
             <p>Saturates</p>
             @if (!is_null($nutrientValues['saturated-fat']))
-                <p>{{ $nutrientValues['saturated-fat'] }} {{ $productUnits }}</p>
+                <p>{{ round($nutrientValues['saturated-fat'], 1) }} {{ $productUnits }}</p>
             @else
                 <p>Unknown</p>
             @endif
@@ -33,7 +33,7 @@
         <div>
             <p>Sugars</p>
             @if (!is_null($nutrientValues['sugars']))
-                <p>{{ $nutrientValues['sugars'] }} {{ $productUnits }}</p>
+                <p>{{ round($nutrientValues['sugars'], 1) }} {{ $productUnits }}</p>
             @else
                 <p>Unknown</p>
             @endif
@@ -41,7 +41,7 @@
         <div>
             <p>Salt</p>
             @if (!is_null($nutrientValues['salt']))
-                <p>{{ $nutrientValues['salt'] }} {{ $productUnits }}</p>
+                <p>{{ round($nutrientValues['salt'], 2) }} {{ $productUnits }}</p>
             @else
                 <p>Unknown</p>
             @endif
