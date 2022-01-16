@@ -41,14 +41,13 @@ class ProductLabel extends Component
     public function __construct($barcode)
     {
         $product = OpenFoodFacts::barcode($barcode);
-        $this->productName = array_key_exists('product_name', $product) ? $product['product_name'] : self::DEFAULT_VALUE;
+        $this->productName = array_key_exists('product_name', $product) ? $product['product_name'] : 'Unkown Product';
 
         // Work out product units
         $this->productUnits = array_key_exists('serving_size', $product)
             && strcmp(substr($product['serving_size'], -2), 'ml') == 0
             ? 'ml' : 'g';
 
-        // Find nutrition values per 100g/ml
         $per100Keys = ['energy-kj_100g', 'energy-kcal_100g', 'fat_100g', 'saturated-fat_100g', 'sugars_100g', 'salt_100g'];
         $per100Exists = $this->count_array_keys($per100Keys, $product['nutriments']) >= 4;
         if ($per100Exists) {
@@ -83,9 +82,6 @@ class ProductLabel extends Component
                 $labelKeys[4] => $currentUser->intakeProfile->max_total_sugar,
                 $labelKeys[5] => $currentUser->intakeProfile->max_salt,
             ];
-            // dd($this->nutrientValues);
-            // dd($userIntake);
-            // dd(strcmp('energy-kj', $labelKeys[0]));
             foreach ($this->nutrientValues as $key => $value) {
                 if (!is_null($value) && strcmp($key, $labelKeys[0]) != 0) {
                     $this->percentageIntakes[$key] = 100 * $this->nutrientValues[$key] / $userIntake[$key];
