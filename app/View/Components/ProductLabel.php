@@ -40,8 +40,13 @@ class ProductLabel extends Component
     public function __construct($barcode)
     {
         $product = OpenFoodFacts::barcode($barcode);
+        // dd(strcmp(substr($product['serving_size'], -2), 'ml'));
         $this->productName = array_key_exists('product_name', $product) ? $product['product_name'] : self::DEFAULT_VALUE;
-        $this->productUnits = 'g'; // work out if g or ml
+
+        // Work out product units
+        if (array_key_exists('serving_size', $product)) {
+            $this->productUnits = strcmp(substr($product['serving_size'], -2), 'ml') == 0 ? 'ml' : 'g';
+        }
 
         // Find nutrition values per 100g/ml
         $per100Keys = ['energy-kj_100g', 'energy-kcal_100g', 'fat_100g', 'saturated-fat_100g', 'sugars_100g', 'salt_100g'];
