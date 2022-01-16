@@ -4,29 +4,63 @@
     <div>
         <div>
             <p>Energy</p>
-            <p>{{ $nutrientValues['energy-kj'] }} {{ $energyKJUnits }}</p>
-            <p>{{ $nutrientValues['energy-kcal'] }} {{ $energyKcalUnits }}</p>
+            @if (!is_null($nutrientValues['energy-kj']))
+                <p>{{ $nutrientValues['energy-kj'] }} {{ $energyKJUnits }}</p>
+            @endif
+            @if (!is_null($nutrientValues['energy-kcal']))
+                <p>{{ $nutrientValues['energy-kcal'] }} {{ $energyKcalUnits }}</p>
+            @else
+                <p>Unknown calories</p>
+            @endif
             <p></p>
         </div>
         <div>
             <p>Fat</p>
-            <p>{{ $nutrientValues['fat'] }} {{ $productUnits }}</p>
+            @if (!is_null($nutrientValues['fat']))
+                <p>{{ $nutrientValues['fat'] }} {{ $productUnits }}</p>
+            @else
+                <p>Unknown</p>
+            @endif
         </div>
         <div>
             <p>Saturates</p>
-            <p>{{ $nutrientValues['saturated-fat'] }} {{ $productUnits }}</p>
+            @if (!is_null($nutrientValues['saturated-fat']))
+                <p>{{ $nutrientValues['saturated-fat'] }} {{ $productUnits }}</p>
+            @else
+                <p>Unknown</p>
+            @endif
         </div>
         <div>
             <p>Sugars</p>
-            <p>{{ $nutrientValues['sugars'] }} {{ $productUnits }}</p>
+            @if (!is_null($nutrientValues['sugars']))
+                <p>{{ $nutrientValues['sugars'] }} {{ $productUnits }}</p>
+            @else
+                <p>Unknown</p>
+            @endif
         </div>
         <div>
             <p>Salt</p>
-            <p>{{ $nutrientValues['salt'] }} {{ $productUnits }}</p>
+            @if (!is_null($nutrientValues['salt']))
+                <p>{{ $nutrientValues['salt'] }} {{ $productUnits }}</p>
+            @else
+                <p>Unknown</p>
+            @endif
         </div>
     </div>
     <div>
         <p>of an adult's reference intake</p>
-        <p>Energy per 100 {{ $productUnits }}: {{ $energyKJPer100 }} {{ $energyKJUnits }} / {{ $energyKcalPer100 }} {{ $energyKcalUnits }}</p>
+        <p>Energy per 100{{ $productUnits }}:
+            @if (!is_null($energyKJPer100))
+                {{ $energyKJPer100 . ' ' . $energyKJUnits}}
+            @endif
+            @if (!is_null($energyKJPer100) && !is_null($energyKcalPer100))
+                /
+            @endif
+            @if (!is_null($energyKcalPer100))
+                {{ $energyKcalPer100 }} {{ $energyKcalUnits }}
+            @else
+                Unknown calories
+            @endif
+        </p>
     </div>
 </div>
