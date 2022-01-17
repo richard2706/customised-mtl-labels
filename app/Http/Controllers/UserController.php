@@ -121,7 +121,10 @@ class UserController extends Controller
 
         $user->update($request->only(['name', 'gender', 'age_category']));
         $user->intakeProfile()->update($request->only(['max_calories', 'max_total_fat',
-                'max_saturated_fat', 'max_total_sugar', 'max_salt']));
+                'med_total_fat_boundary', 'high_total_fat_boundary', 'max_saturated_fat',
+                'med_saturated_fat_boundary', 'high_saturated_fat_boundary', 'max_total_sugar',
+                'med_total_sugar_boundary', 'high_total_sugar_boundary', 'max_salt',
+                'med_salt_boundary', 'high_salt_boundary']));
 
         return redirect()->route('user.settings')
             ->with('message', 'Your settings have been updated.');
