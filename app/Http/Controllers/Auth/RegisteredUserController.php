@@ -53,7 +53,7 @@ class RegisteredUserController extends Controller
 
         $gender = Gender::genderFromString($user->gender);
         $ageCategory = AgeCategory::ageCategoryFromString($user->age_category);
-        $intakeProfile = $ageCategory->intakeProfile($gender);
+        $intakeProfile = $ageCategory->defaultIntakeProfile($gender);
         $user->intakeProfile()->create($intakeProfile);
 
         event(new Registered($user));
