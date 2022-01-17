@@ -18,10 +18,11 @@
                     <form method="POST" action="{{ route('product.find') }}">
                         @csrf
 
-                        <label for="name">Barcode number</label><br>
-                        <input type="text" name="barcode" value=""><br>
+                        <x-label for="name">Barcode number</x-label>
+                        <x-input type="text" name="barcode" value=""/>
+                        <br>
 
-                        <input type="submit" value="Submit">
+                        <x-button class="mt-2">Show product label</x-button>
                     </form>
                 </div>
             </div>
