@@ -26,6 +26,9 @@ class ProductLabel extends Component
     /** Percentages of user's intake for each nutrient. */
     public $percentageIntakes;
 
+    /** Colour category for each nutrient. */
+    public $nutrientColours;
+
     /** Energy values per 100 g/ml */
     public $energyKJPer100;
     public $energyKcalPer100;
@@ -55,12 +58,50 @@ class ProductLabel extends Component
         $per100Keys = ['energy-kj_100g', 'energy-kcal_100g', 'fat_100g', 'saturated-fat_100g', 'sugars_100g', 'salt_100g'];
         $per100Exists = $this->count_array_keys($per100Keys, $product['nutriments']) >= 4;
         if ($per100Exists) {
+            $this->labelSuccessful = true;
+
             // Find nutrition values per 100g/ml
-            $labelKeys = ['energy-kj', 'energy-kcal', 'fat', 'saturated-fat', 'sugars', 'salt'];
-            foreach ($labelKeys as $key) {
+            $allLabelKeys = ['energy-kj', 'energy-kcal', 'fat', 'saturated-fat', 'sugars', 'salt'];
+            foreach ($allLabelKeys as $key) {
                 $this->nutrientValues[$key] = array_key_exists($key, $product['nutriments']) ? floatval($product['nutriments'][$key]) : null;
             }
-            $this->labelSuccessful = true;
+
+            // Determine colour category for each nutrient (based on per 100g info)
+            $currentUser = Auth::user();
+            $userBoundaries = [
+                $allLabelKeys[2] => [
+                    'med' => $currentUser->intakeProfile->med_total_fat_boundary,
+                    'high' => $currentUser->intakeProfile->high_total_fat_boundary,
+                ],
+                $allLabelKeys[3] => [
+                    'med' => $currentUser->intakeProfile->med_saturated_fat_boundary,
+                    'high' => $currentUser->intakeProfile->high_saturated_fat_boundary,
+                ],
+                $allLabelKeys[4] => [
+                    'med' => $currentUser->intakeProfile->med_total_sugar_boundary,
+                    'high' => $currentUser->intakeProfile->high_total_sugar_boundary,
+                ],
+                $allLabelKeys[5] => [
+                    'med' => $currentUser->intakeProfile->med_salt_boundary,
+                    'high' => $currentUser->intakeProfile->high_salt_boundary,
+                ]
+            ];
+            foreach (array_slice($allLabelKeys, -4) as $nutrient) {
+                if (is_null($this->nutrientValues[$nutrient])) {
+                    $this->nutrientColours[$nutrient] = 'white'; // White
+                } else if ($this->nutrientValues[$nutrient] < $userBoundaries[$nutrient]['med']) {
+                    // $this->nutrientColours[$nutrient] = '#99cc00'; // Green
+                    $this->nutrientColours[$nutrient] = 'nutrient-low'; // Red
+                } else if ($this->nutrientValues[$nutrient] < $userBoundaries[$nutrient]['high']) {
+                    // $this->nutrientColours[$nutrient] = '#ffcc00'; // Amber
+                    $this->nutrientColours[$nutrient] = 'nutrient-med'; // Red
+                } else {
+                    // $this->nutrientColours[$nutrient] = '#ff0000'; // Red
+                    // $this->nutrientColours[$nutrient] = 'red-600'; // Red
+                    $this->nutrientColours[$nutrient] = 'nutrient-high'; // Red
+                }
+            }
+
             
             // Adjust label values for specified number of portions
             $numPortions = 1;
@@ -78,22 +119,22 @@ class ProductLabel extends Component
             $this->energyKcalUnits = array_key_exists('energy-kcal_unit', $product['nutriments']) ? $product['nutriments']['energy-kcal_unit'] : 'kcal';
 
             // Calculate percentage of user's intake
-            $currentUser = Auth::user();
             $userIntake = [
-                $labelKeys[1] => $currentUser->intakeProfile->max_calories,
-                $labelKeys[2] => $currentUser->intakeProfile->max_total_fat,
-                $labelKeys[3] => $currentUser->intakeProfile->max_saturated_fat,
-                $labelKeys[4] => $currentUser->intakeProfile->max_total_sugar,
-                $labelKeys[5] => $currentUser->intakeProfile->max_salt,
+                $allLabelKeys[1] => $currentUser->intakeProfile->max_calories,
+                $allLabelKeys[2] => $currentUser->intakeProfile->max_total_fat,
+                $allLabelKeys[3] => $currentUser->intakeProfile->max_saturated_fat,
+                $allLabelKeys[4] => $currentUser->intakeProfile->max_total_sugar,
+                $allLabelKeys[5] => $currentUser->intakeProfile->max_salt,
             ];
             foreach ($this->nutrientValues as $key => $value) {
-                if (!is_null($value) && strcmp($key, $labelKeys[0]) != 0) {
+                if (!is_null($value) && strcmp($key, $allLabelKeys[0]) != 0) {
                     $this->percentageIntakes[$key] = 100 * $this->nutrientValues[$key] / $userIntake[$key];
                 }
             }
         } else {
             $this->labelSuccessful = false;
         }
+        // dd($this->nutrientColours);
     }
 
     /**
