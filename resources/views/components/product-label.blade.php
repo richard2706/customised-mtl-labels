@@ -93,7 +93,7 @@
             </div>
         </div>
 
-        <p>of your reference intake</p>
+        <p>of your customised intake</p>
     </div>
         
     <div>
