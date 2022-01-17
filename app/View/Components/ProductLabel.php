@@ -14,6 +14,9 @@ class ProductLabel extends Component
     /** Name of the product. */
     public $productName;
 
+    /** Barcode number of the product. */
+    public $barcode;
+
     /** Size of each portion of the product. */
     public $portionSize;
 
@@ -40,6 +43,7 @@ class ProductLabel extends Component
      */
     public function __construct($barcode)
     {
+        $this->barcode = $barcode;
         $product = OpenFoodFacts::barcode($barcode);
         $this->productName = array_key_exists('product_name', $product) ? $product['product_name'] : 'Unkown Product';
 
