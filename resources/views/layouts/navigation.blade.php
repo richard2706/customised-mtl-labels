@@ -15,6 +15,9 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('product.scan')" :active="request()->routeIs('product.scan')">
+                        {{ __('Scan Product') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -46,7 +49,7 @@
                         </form>
 
                         <x-dropdown-link href="{{ route('user.settings') }}">
-                            Settings
+                            {{ __('Settings') }}
                         </x-dropdown-link>
                     </x-slot>
                 </x-dropdown>
