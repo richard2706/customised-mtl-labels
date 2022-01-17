@@ -17,10 +17,22 @@ class CreateIntakeProfilesTable extends Migration
             $table->unsignedBigInteger('user_id')->unique();
             $table->timestamps();
             $table->unsignedInteger('max_calories');
+
             $table->unsignedDouble('max_total_fat');
+            $table->unsignedDouble('med_total_fat_boundary')->default(3);
+            $table->unsignedDouble('high_total_fat_boundary')->default(17.5);
+            
             $table->unsignedDouble('max_saturated_fat');
+            $table->unsignedDouble('med_saturated_fat_boundary')->default(1.5);
+            $table->unsignedDouble('high_saturated_fat_boundary')->default(5);
+            
             $table->unsignedDouble('max_total_sugar');
+            $table->unsignedDouble('med_total_sugar_boundary')->default(5);
+            $table->unsignedDouble('high_total_sugar_boundary')->default(22.5);
+            
             $table->unsignedDouble('max_salt');
+            $table->unsignedDouble('med_salt_boundary')->default(0.3);
+            $table->unsignedDouble('high_salt_boundary')->default(1.5);
 
             $table->primary(['user_id']);
             $table->foreign('user_id')->references('id')->on('users')

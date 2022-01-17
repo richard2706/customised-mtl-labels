@@ -37,7 +37,7 @@ class IntakeProfileTableSeeder extends Seeder
         foreach ($allRandomUsers as $user) {
             $ageCategory = AgeCategory::ageCategoryFromString($user->age_category);
             $gender = Gender::genderFromString($user->gender);
-            $defaultIntakeProfile = $ageCategory->intakeProfile($gender);
+            $defaultIntakeProfile = $ageCategory->defaultIntakeProfile($gender);
             
             $minTolerance = 1 - config('constants.customised_nutrient_boundary_factor');
             $maxTolerance = 1 + config('constants.customised_nutrient_boundary_factor');
