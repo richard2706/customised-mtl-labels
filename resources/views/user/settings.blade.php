@@ -50,8 +50,14 @@
                             <tr>
                                 <th></th>
                                 <th>Your daily maximum</th>
-                                <th>Medium boundary</th>
-                                <th>High boundary</th>
+                                <th>
+                                    <p>Medium boundary</p>
+                                    <i class="text-sm">(g per 100g)</i>
+                                </th>
+                                <th>
+                                    <p>High boundary</p>
+                                    <i class="text-sm">(g per 100g)</i>
+                                </th>
                             </tr>
                             <tr>
                                 <td>Calories</td>
