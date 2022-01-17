@@ -11,10 +11,10 @@
                 <p class="text-sm">Energy</p>
                 <div class="flex flex-col">
                     @if (!is_null($nutrientValues['energy-kj']))
-                        <p>{{ round($nutrientValues['energy-kj']) }} {{ $energyKJUnits }}</p>
+                        <p class="text-xs">{{ round($nutrientValues['energy-kj']) }} {{ $energyKJUnits }}</p>
                     @endif
                     @if (!is_null($nutrientValues['energy-kcal']))
-                        <p>{{ round($nutrientValues['energy-kcal']) }} {{ $energyKcalUnits }}</p>
+                        <p class="text-sm">{{ round($nutrientValues['energy-kcal']) }} {{ $energyKcalUnits }}</p>
                     @else
                         <p class="text-xs">Unknown calories</p>
                     @endif
