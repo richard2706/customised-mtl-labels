@@ -27,7 +27,7 @@ class ProductLabel extends Component
     public $percentageIntakes;
 
     /** Colour category for each nutrient. */
-    public $nutrientColours;
+    public $nutrientColourStyles;
 
     /** Energy values per 100 g/ml */
     public $energyKJPer100;
@@ -88,17 +88,16 @@ class ProductLabel extends Component
             ];
             foreach (array_slice($allLabelKeys, -4) as $nutrient) {
                 if (is_null($this->nutrientValues[$nutrient])) {
-                    $this->nutrientColours[$nutrient] = 'white'; // White
+                    $this->nutrientColourStyles[$nutrient] = 'bg-white'; // White
+
                 } else if ($this->nutrientValues[$nutrient] < $userBoundaries[$nutrient]['med']) {
-                    // $this->nutrientColours[$nutrient] = '#99cc00'; // Green
-                    $this->nutrientColours[$nutrient] = 'nutrient-low'; // Red
+                    $this->nutrientColourStyles[$nutrient] = 'bg-nutrient-low'; // Green
+
                 } else if ($this->nutrientValues[$nutrient] < $userBoundaries[$nutrient]['high']) {
-                    // $this->nutrientColours[$nutrient] = '#ffcc00'; // Amber
-                    $this->nutrientColours[$nutrient] = 'nutrient-med'; // Red
+                    $this->nutrientColourStyles[$nutrient] = 'bg-nutrient-med'; // Amber
+
                 } else {
-                    // $this->nutrientColours[$nutrient] = '#ff0000'; // Red
-                    // $this->nutrientColours[$nutrient] = 'red-600'; // Red
-                    $this->nutrientColours[$nutrient] = 'nutrient-high'; // Red
+                    $this->nutrientColourStyles[$nutrient] = 'bg-nutrient-high text-white'; // Red
                 }
             }
 
@@ -134,7 +133,7 @@ class ProductLabel extends Component
         } else {
             $this->labelSuccessful = false;
         }
-        // dd($this->nutrientColours);
+        // dd($this->nutrientColourStyles);
     }
 
     /**
