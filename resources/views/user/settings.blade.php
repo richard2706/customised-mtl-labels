@@ -59,7 +59,12 @@
 
                         <div>
                             <h1 class="text-lg">Your Intake Profile</h1>
-                            <table>
+                            <ul class="list-disc ml-4 mb-4">
+                                <li>Nutrients with less than the medium boundary per 100g will appear <span class="text-nutrient-low font-bold">green</span></li>
+                                <li>Nutrients with more than (or the same as) the medium boundary per 100g will appear <span class="text-nutrient-med font-bold">amber</span></li>
+                                <li>Nutrients with more than (or the same as) the high boundary per 100g will appear <span class="text-nutrient-high font-bold">red</span></li>
+                            </ul>
+                            <table class="border-separate">
                                 <tr>
                                     <th class="p-1"></th>
                                     <th class="p-1">Your daily maximum</th>
