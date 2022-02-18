@@ -54,10 +54,12 @@ enum AgeCategory: String
      */
     public function maxIntakeProfile(Gender $gender)
     {
-        return array_map(function ($value) {
+        $profile = array_map(function ($value) {
             $multiplier = 1 + config('constants.customised_nutrient_boundary_factor');
             return round($value * $multiplier, 1);
         }, $this->defaultIntakeProfile($gender));
+        $profile['max_calories'] = round($profile['max_calories']);
+        return $profile;
     }
 
     /**
@@ -65,28 +67,40 @@ enum AgeCategory: String
      */
     public function minIntakeProfile(Gender $gender)
     {
-        return array_map(function ($value) {
+        $profile = array_map(function ($value) {
             $multiplier = 1 - config('constants.customised_nutrient_boundary_factor');
             return round($value * $multiplier, 1);
         }, $this->defaultIntakeProfile($gender));
+        $profile['max_calories'] = round($profile['max_calories']);
+        return $profile;
     }
 
     /**
-     * Gets the maximum intake for the given category.
+     * Gets the maximum intake for the given category. Calories is rounded nearest whole number,
+     * other nutrients are rounded to 1dp.
      */
     public function maxCategoryIntake(Gender $gender, $category)
     {
         $multiplier = 1 + config('constants.customised_nutrient_boundary_factor');
-        return round($this->defaultIntakeProfile($gender)[$category] * $multiplier);
+        if (strcmp($category, 'max_calories')) {
+            return round($this->defaultIntakeProfile($gender)[$category] * $multiplier, 1);
+        } else {
+            return round($this->defaultIntakeProfile($gender)[$category] * $multiplier);
+        }
     }
 
     /**
-     * Gets the maximum intake for the given category.
+     * Gets the maximum intake for the given category. Calories is rounded nearest whole number,
+     * other nutrients are rounded to 1dp.
      */
     public function minCategoryIntake(Gender $gender, $category)
     {
         $multiplier = 1 - config('constants.customised_nutrient_boundary_factor');
-        return round($this->defaultIntakeProfile($gender)[$category] * $multiplier);
+        if (strcmp($category, 'max_calories')) {
+            return round($this->defaultIntakeProfile($gender)[$category] * $multiplier, 1);
+        } else {
+            return round($this->defaultIntakeProfile($gender)[$category] * $multiplier);
+        }
     }
 
     /**

@@ -1,5 +1,7 @@
 <?php
 
+use App\Enums\AgeCategory;
+use App\Enums\Gender;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -37,5 +39,10 @@ Route::post('/scan', [ProductController::class, 'findProduct'])
 
 Route::get('/product/{barcode}', [ProductController::class, 'label'])
     ->middleware(['auth'])->name('product.show');
+
+Route::get('/test', function() {
+    $profile = AgeCategory::FOUR_TO_SIX->maxIntakeProfile(Gender::FEMALE);
+    dd($profile);
+});
 
 require __DIR__.'/auth.php';
