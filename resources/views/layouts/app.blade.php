@@ -18,16 +18,24 @@
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
-
-            <!-- Page Heading -->
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <!-- Navigation Bar -->
+            <nav class="bg-nutrient-low shadow-lg max-w-7xl py-5 px-4 sm:px-6 flex items-center">
+                <h2 class="font-bold text-xl">
                     {{ $header }}
-                </div>
-            </header>
+                </h2>
 
-            <!-- Page Content -->
+                <div class="ml-auto content-center">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();"
+                            class="text-gray-800 border-2 border-gray-800 p-2 sm:hover:bg-black sm:hover:bg-opacity-10">
+                            {{ __('Log Out') }}
+                        </a>
+                    </form>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
             <main>
                 {{ $slot }}
             </main>
