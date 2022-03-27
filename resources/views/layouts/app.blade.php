@@ -17,9 +17,9 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen">
             <!-- Navigation Bar -->
-            <nav class="bg-nutrient-low shadow-lg max-w-7xl py-5 px-4 sm:px-6 flex items-center">
+            <nav class="fixed top-0 left-0 right-0 h-14 bg-nutrient-low shadow-lg px-4 sm:px-6 flex items-center">
                 <h2 class="font-bold text-xl">
                     {{ $header }}
                 </h2>
@@ -28,7 +28,7 @@
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();"
-                            class="text-gray-800 border-2 border-gray-800 p-2 sm:hover:bg-black sm:hover:bg-opacity-10">
+                            class="text-gray-800 border-2 border-gray-800 py-1 px-2 sm:hover:bg-black sm:hover:bg-opacity-10">
                             {{ __('Log Out') }}
                         </a>
                     </form>
@@ -36,12 +36,12 @@
             </nav>
 
             <!-- Main Content -->
-            <main>
+            <main class="pt-16 px-2">
                 {{ $slot }}
             </main>
 
-            <div class="fixed bottom-0 left-0 right-0 max-w-7xl py-5 px-4 sm:px-6">
-                {{ $footer }}
+            <div class="fixed bottom-0 left-0 right-0 bg-white">
+                {{ $footer ?? '' }}
             </div>
         </div>
     </body>
