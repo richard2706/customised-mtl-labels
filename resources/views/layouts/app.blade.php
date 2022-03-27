@@ -39,6 +39,10 @@
             <main>
                 {{ $slot }}
             </main>
+
+            <div class="fixed bottom-0 left-0 right-0 max-w-7xl py-5 px-4 sm:px-6">
+                {{ $footer }}
+            </div>
         </div>
     </body>
 </html>
