@@ -22,6 +22,7 @@
         "vue-loader": "^16.8.3"
     },
     "dependencies": {
-        "vue": "^3.2.31"
+        "vue": "^3.2.31",
+        "vue-barcode-reader": "^1.0.2"
     }
 }
