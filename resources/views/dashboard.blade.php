@@ -3,17 +3,22 @@
         {{ __('Dashboard') }}
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <a href="{{ route('product.scan') }}">Scan a product</a>
-                </div>
-            </div>
-        </div>
+    <div class="flex flex-col items-center">
+        <p>Hello, {{ Auth::user()->name }}.</p>
     </div>
 
     <x-slot name="footer">
-        <p>hello</p>
+        <div class="flex flex-col items-center space-y-2 p-2">
+            <a href="{{ route('user.settings') }}" class="w-full max-w-sm box-border border-2 border-nutrient-med text-center">
+                <div class="py-2 px-2 sm:hover:bg-black sm:hover:bg-opacity-10">
+                    Your Settings
+                </div>
+            </a>
+            <a href="{{ route('product.scan') }}" class="w-full max-w-sm box-border bg-nutrient-high text-center text-white">
+                <div class="py-2 px-2 sm:hover:bg-black sm:hover:bg-opacity-25">
+                    Scan Barcode
+                </div>
+            </a>
+        </div>
     </x-slot>
 </x-app-layout>
