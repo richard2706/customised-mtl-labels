@@ -23,6 +23,7 @@
                 <h2 class="font-bold text-xl">
                     {{ $header ?? config('app.name', 'Laravel') }}
                 </h2>
+                {{ $navigation ?? '' }}
             </nav>
 
             <!-- Main Content -->
