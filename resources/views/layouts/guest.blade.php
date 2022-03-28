@@ -16,9 +16,24 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
-    <body>
-        <div class="font-sans text-gray-900 antialiased">
-            {{ $slot }}
+    <body class="font-sans antialiased">
+        <div class="min-h-screen">
+            <!-- Navigation Bar -->
+            <nav class="fixed top-0 left-0 right-0 h-14 bg-nutrient-low shadow-lg px-4 sm:px-6 flex items-center">
+                <h2 class="font-bold text-xl">
+                    {{ $header ?? config('app.name', 'Laravel') }}
+                </h2>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="pt-16 px-2">
+                {{ $slot }}
+            </main>
+
+            <!-- Optional Footer -->
+            <div class="fixed bottom-0 left-0 right-0 bg-white">
+                {{ $footer ?? '' }}
+            </div>
         </div>
     </body>
 </html>
