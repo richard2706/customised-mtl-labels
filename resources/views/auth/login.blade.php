@@ -3,7 +3,7 @@
 
     <div class="flex flex-col items-center mt-2 pb-28">
         <b>Please enter your login details.</b>
-        
+
         <form method="POST" action="{{ route('login') }}" id="login-form" class="flex flex-col items-center mt-4 w-full max-w-sm">
             @csrf
 
@@ -31,6 +31,8 @@
                     <span class="ml-2 text-sm">{{ __('Remember me') }}</span>
                 </label>
             </div>
+
+            <input type="submit" hidden>
 
             <x-slot name="footer">
                 <div class="flex flex-col items-center space-y-2 p-2">
