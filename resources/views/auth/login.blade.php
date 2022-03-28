@@ -1,18 +1,12 @@
 <x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
-
+    <div class="pb-28">
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('login') }}" id="login-form">
             @csrf
 
             <!-- Email Address -->
@@ -40,17 +34,19 @@
                 </label>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-button class="ml-3">
-                    {{ __('Log in') }}
-                </x-button>
-            </div>
+            <x-slot name="footer">
+                <div class="flex flex-col items-center space-y-2 p-2">
+                    @if (Route::has('password.request'))
+                        <x-button-secondary href="{{ route('password.request') }}">
+                            {{ __('Forgot your password?') }}
+                        </x-button-secondary>
+                    @endif
+        
+                    <x-button-primary class="cursor-pointer" onclick="document.getElementById('login-form').submit();">
+                        {{ __('Log in') }}
+                    </x-button-primary>
+                </div>
+            </x-slot>
         </form>
-    </x-auth-card>
+    </div>
 </x-guest-layout>
