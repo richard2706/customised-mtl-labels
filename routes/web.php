@@ -38,4 +38,8 @@ Route::post('/scan', [ProductController::class, 'findProduct'])
 Route::get('/product/{barcode}', [ProductController::class, 'label'])
     ->middleware(['auth'])->name('product.show');
 
+Route::get('/test', function() {
+    return view('test');
+});
+
 require __DIR__.'/auth.php';
