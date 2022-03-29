@@ -1,36 +1,35 @@
 <x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+    <x-slot name="title">Reset Password</x-slot>
 
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
-        </div>
+    <div class="flex flex-col items-center mt-2 pb-0">
+        <p class="text-center text-sm my-2">
+            If you have forgotten your password, please enter your email address to recieve a password reset link.
+        </p>
 
         <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
+        <x-auth-session-status :status="session('status')" />
 
         <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+        <x-auth-validation-errors :errors="$errors" />
 
-        <form method="POST" action="{{ route('password.email') }}">
+        <form method="POST" action="{{ route('password.email') }}" id="reset-password-form" class="flex flex-col items-center mt-2 w-full max-w-sm">
             @csrf
 
             <!-- Email Address -->
-            <div>
+            <div class="w-full max-w-sm">
                 <x-label for="email" :value="__('Email')" />
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <x-button>
-                    {{ __('Email Password Reset Link') }}
-                </x-button>
-            </div>
+            <x-slot name="footer">
+                <div class="flex flex-col items-center space-y-2 p-2">
+                    <x-button-secondary href="{{ route('login') }}">Back to Login</x-button-secondary>
+                    <x-button-submit form="reset-password-form">
+                        {{ __('Email Password Reset Link') }}
+                    </x-button-submit>
+                </div>
+            </x-slot>
         </form>
-    </x-auth-card>
+    </div>
 </x-guest-layout>
