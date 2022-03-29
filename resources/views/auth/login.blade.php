@@ -2,7 +2,7 @@
     <x-slot name="title">Log In</x-slot>
 
     <div class="flex flex-col items-center mt-2 pb-44">
-        <b>Please enter your login details.</b>
+        <b class="text-center">Please enter your login details.</b>
 
         <form method="POST" action="{{ route('login') }}" id="login-form" class="flex flex-col items-center mt-4 w-full max-w-sm">
             @csrf
