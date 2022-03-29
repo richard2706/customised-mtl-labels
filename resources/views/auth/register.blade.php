@@ -2,9 +2,15 @@
     <x-slot name="title">Create Account</x-slot>
 
     <div class="flex flex-col items-center mt-2 pb-32">
-        <b class="text-center">Please enter your details to create an account.</b>
+        
+        <!-- Validation Errors -->
+        @if ($errors->any() == 0)
+            <p class="text-center">Please enter your details to create an account.</p>
+        @else
+            <x-auth-validation-errors :errors="$errors" />
+        @endif
 
-        <form method="POST" action="{{ route('register') }}" id="register-form" class="flex flex-col items-center mt-4 w-full max-w-sm">
+        <form method="POST" action="{{ route('register') }}" id="register-form" class="flex flex-col items-center mt-2 w-full max-w-sm">
             @csrf
 
             <!-- Name -->
@@ -48,8 +54,5 @@
                 </div>
             </x-slot>
         </form>
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
     </div>
 </x-guest-layout>

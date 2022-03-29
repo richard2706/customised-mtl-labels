@@ -2,9 +2,17 @@
     <x-slot name="title">Log In</x-slot>
 
     <div class="flex flex-col items-center mt-2 pb-44">
-        <b class="text-center">Please enter your login details.</b>
+        <!-- Session Status -->
+        <x-auth-session-status :status="session('status')" />
 
-        <form method="POST" action="{{ route('login') }}" id="login-form" class="flex flex-col items-center mt-4 w-full max-w-sm">
+        <!-- Validation Errors -->
+        @if ($errors->any() == 0)
+            <p class="text-center">Please enter your login details.</p>
+        @else
+            <x-auth-validation-errors :errors="$errors" />
+        @endif
+
+        <form method="POST" action="{{ route('login') }}" id="login-form" class="flex flex-col items-center mt-2 w-full max-w-sm">
             @csrf
 
             <!-- Email Address -->
@@ -48,11 +56,5 @@
                 </div>
             </x-slot>
         </form>
-
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
     </div>
 </x-guest-layout>
