@@ -1,23 +1,19 @@
 <x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+    <div class="flex flex-col items-center mt-2 pb-0">
+        <x-slot name="title">Reset Password</x-slot>
 
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
-        </div>
+        <p class="test-center text-sm my-2">
+            This is a secure area of the application. Please confirm your password before continuing.
+        </p>
 
         <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+        <x-auth-validation-errors :errors="$errors" />
 
-        <form method="POST" action="{{ route('password.confirm') }}">
+        <form method="POST" action="{{ route('password.confirm') }}" id="confirm-password-form" class="flex flex-col items-center mt-2 w-full max-w-sm">
             @csrf
 
             <!-- Password -->
-            <div>
+            <div class="w-full max-w-sm">
                 <x-label for="password" :value="__('Password')" />
 
                 <x-input id="password" class="block mt-1 w-full"
@@ -26,11 +22,13 @@
                                 required autocomplete="current-password" />
             </div>
 
-            <div class="flex justify-end mt-4">
-                <x-button>
-                    {{ __('Confirm') }}
-                </x-button>
-            </div>
+            <x-slot name="footer">
+                <div class="flex flex-col items-center space-y-2 p-2">
+                    <x-button-submit form="confirm-password-form">
+                        {{ __('Confirm') }}
+                    </x-button-submit>
+                </div>
+            </x-slot>
         </form>
-    </x-auth-card>
+    </div>
 </x-guest-layout>
