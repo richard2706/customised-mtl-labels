@@ -1,7 +1,7 @@
 <x-guest-layout>
-    <x-slot name="title">Reset Password</x-slot>
+    <x-slot name="title">Forgot Password</x-slot>
 
-    <div class="flex flex-col items-center mt-2 pb-0">
+    <div class="flex flex-col items-center mt-2 pb-32">
         <p class="text-center text-sm my-2">
             If you have forgotten your password, please enter your email address to recieve a password reset link.
         </p>
@@ -12,7 +12,7 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors :errors="$errors" />
 
-        <form method="POST" action="{{ route('password.email') }}" id="reset-password-form" class="flex flex-col items-center mt-2 w-full max-w-sm">
+        <form method="POST" action="{{ route('password.email') }}" id="forgot-password-form" class="flex flex-col items-center mt-2 w-full max-w-sm">
             @csrf
 
             <!-- Email Address -->
@@ -25,7 +25,7 @@
             <x-slot name="footer">
                 <div class="flex flex-col items-center space-y-2 p-2">
                     <x-button-secondary href="{{ route('login') }}">Back to Login</x-button-secondary>
-                    <x-button-submit form="reset-password-form">
+                    <x-button-submit form="forgot-password-form">
                         {{ __('Email Password Reset Link') }}
                     </x-button-submit>
                 </div>
