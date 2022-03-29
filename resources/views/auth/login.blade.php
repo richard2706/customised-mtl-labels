@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <x-slot name="header">Log In</x-slot>
+    <x-slot name="title">Log In</x-slot>
 
     <div class="flex flex-col items-center mt-2 pb-44">
         <b>Please enter your login details.</b>

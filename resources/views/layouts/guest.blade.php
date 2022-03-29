@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ ($title ?? '' ? $title . ' - ' : '') . config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -21,7 +21,7 @@
             <!-- Navigation Bar -->
             <nav class="fixed top-0 left-0 right-0 h-14 bg-nutrient-low shadow-lg px-4 sm:px-6 flex items-center">
                 <h2 class="font-bold text-xl">
-                    {{ $header ?? config('app.name', 'Laravel') }}
+                    {{ $title ?? config('app.name', 'Laravel') }}
                 </h2>
                 {{ $navigation ?? '' }}
             </nav>

@@ -1,6 +1,6 @@
 <!-- app layout extends the guest layout by adding a log out button. Other slots may be filled when this layout is used. -->
 <x-guest-layout>
-    <x-slot name="header">{{ $header ?? '' }}</x-slot>
+    <x-slot name="title">{{ $title ?? '' }}</x-slot>
 
     <x-slot name="navigation">
         <div class="ml-auto content-center">
