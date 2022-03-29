@@ -32,8 +32,6 @@
                 </label>
             </div>
 
-            <input type="submit" hidden>
-
             <x-slot name="footer">
                 <div class="flex flex-col items-center space-y-2 p-2">
                     <x-button-secondary href="{{ route('register') }}">Create an Account</x-button-secondary>
@@ -44,9 +42,9 @@
                         </x-button-secondary>
                     @endif
         
-                    <x-button-primary class="cursor-pointer" onclick="document.getElementById('login-form').submit();">
+                    <x-button-submit form="login-form">
                         {{ __('Log in') }}
-                    </x-button-primary>
+                    </x-button-submit>
                 </div>
             </x-slot>
         </form>
