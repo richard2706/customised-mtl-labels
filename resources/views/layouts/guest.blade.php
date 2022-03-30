@@ -27,7 +27,8 @@
             </nav>
 
             <!-- Main Content -->
-            <main class="pt-16 px-2">
+            <main class="pt-14 mx-2">
+                <div class="h-4"></div>
                 {{ $slot }}
             </main>
 

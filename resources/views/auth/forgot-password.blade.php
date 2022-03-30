@@ -1,8 +1,8 @@
 <x-guest-layout>
     <x-slot name="title">Forgot Password</x-slot>
 
-    <div class="flex flex-col items-center mt-2 pb-32">
-        <p class="text-center text-sm my-2">
+    <div class="flex flex-col items-center pb-32">
+        <p class="text-center text-sm mb-2">
             If you have forgotten your password, please enter your email address to recieve a password reset link.
         </p>
 
