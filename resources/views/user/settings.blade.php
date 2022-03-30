@@ -8,31 +8,31 @@
 
         <x-auth-session-status :status="session('message')" />
 
-        <form method="POST" action="{{ route('user.update', compact('user')) }}" id="settings-form" class="mt-2">
+        <form method="POST" action="{{ route('user.update', compact('user')) }}" id="settings-form" class="flex flex-col items-center mt-2 w-full max-w-2xl">
             @csrf
             
-            <div class="mb-4">
+            <div class="flex flex-col items-center w-full max-w-sm">
                 <h1 class="text-lg">Your Details</h1>
 
-                <div class="my-2">
+                <div class="w-full mt-2">
                     <x-label for="name">Name</x-label>
-                    <x-input type="text" name="name" value="{{ $user->name }}"/><br>
+                    <x-input type="text" name="name" value="{{ $user->name }}"/>
                 </div>
 
-                <div class="my-2">
+                <div class="w-full mt-2">
                     <x-label for="gender">Gender</x-label>
-                    <select name="gender">
+                    <select name="gender" class="w-full box-border border-2 border-nutrient-med focus:border-nutrient-med focus:ring focus:ring-nutrient-med focus:ring-opacity-50">
                         @foreach (array_column(App\Enums\Gender::cases(), 'value') as $genderValue)
-                        <option value="{{ $genderValue }}" @if ($user->gender == $genderValue) selected @endif>
+                        <option value="{{ $genderValue }}" @if ($user->gender == $genderValue) selected @endif class="">
                             {{ ucfirst($genderValue) }}
                         </option>
                         @endforeach
                     </select>
                 </div>
                 
-                <div class="my-2">
+                <div class="w-full mt-2">
                     <x-label for="age_category">Age Category</x-label>
-                    <select name="age_category">
+                    <select name="age_category" class="w-full box-border border-2 border-nutrient-med focus:border-nutrient-med focus:ring focus:ring-nutrient-med focus:ring-opacity-50">
                         @foreach (array_column(App\Enums\AgeCategory::cases(), 'value') as $ageCategoryValue)
                             <option value="{{ $ageCategoryValue }}" @if (strcmp($user->age_category, $ageCategoryValue) == 0) selected @endif>
                                 {{ $ageCategoryValue }}
@@ -42,7 +42,7 @@
                 </div>
             </div>
 
-            <div>
+            <div class="flex flex-col items-center w-full mt-4">
                 <h1 class="text-lg">Your Intake Profile</h1>
                 <ul class="list-disc ml-4 mb-4">
                     <li>Nutrients with less than the medium boundary per 100g will appear <span class="text-nutrient-low font-bold">green</span></li>
