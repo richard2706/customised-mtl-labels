@@ -19,26 +19,28 @@
                     <x-input type="text" name="name" value="{{ $user->name }}"/>
                 </div>
 
-                <div class="w-full mt-2">
-                    <x-label for="gender">Gender</x-label>
-                    <select name="gender" class="w-full box-border border-2 border-nutrient-med focus:border-nutrient-med focus:ring focus:ring-nutrient-med focus:ring-opacity-50">
-                        @foreach (array_column(App\Enums\Gender::cases(), 'value') as $genderValue)
-                        <option value="{{ $genderValue }}" @if ($user->gender == $genderValue) selected @endif class="">
-                            {{ ucfirst($genderValue) }}
-                        </option>
-                        @endforeach
-                    </select>
-                </div>
-                
-                <div class="w-full mt-2">
-                    <x-label for="age_category">Age Category</x-label>
-                    <select name="age_category" class="w-full box-border border-2 border-nutrient-med focus:border-nutrient-med focus:ring focus:ring-nutrient-med focus:ring-opacity-50">
-                        @foreach (array_column(App\Enums\AgeCategory::cases(), 'value') as $ageCategoryValue)
-                            <option value="{{ $ageCategoryValue }}" @if (strcmp($user->age_category, $ageCategoryValue) == 0) selected @endif>
-                                {{ $ageCategoryValue }}
+                <div class="w-full flex flex-col xs:flex-row gap-x-2">
+                    <div class="w-full mt-2">
+                        <x-label for="gender">Gender</x-label>
+                        <select name="gender" class="w-full box-border border-2 border-nutrient-med focus:border-nutrient-med focus:ring focus:ring-nutrient-med focus:ring-opacity-50">
+                            @foreach (array_column(App\Enums\Gender::cases(), 'value') as $genderValue)
+                            <option value="{{ $genderValue }}" @if ($user->gender == $genderValue) selected @endif class="">
+                                {{ ucfirst($genderValue) }}
                             </option>
-                        @endforeach
-                    </select>
+                            @endforeach
+                        </select>
+                    </div>
+                    
+                    <div class="w-full mt-2">
+                        <x-label for="age_category">Age Category</x-label>
+                        <select name="age_category" class="w-full box-border border-2 border-nutrient-med focus:border-nutrient-med focus:ring focus:ring-nutrient-med focus:ring-opacity-50">
+                            @foreach (array_column(App\Enums\AgeCategory::cases(), 'value') as $ageCategoryValue)
+                                <option value="{{ $ageCategoryValue }}" @if (strcmp($user->age_category, $ageCategoryValue) == 0) selected @endif>
+                                    {{ $ageCategoryValue }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
             </div>
 
