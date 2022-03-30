@@ -5,7 +5,7 @@
     <div class="my-2">
         <p>{{ $portionSize }} {{ $productUnits }} contains:</p>
 
-        <div class="inline-flex space-x-0.5">
+        <div class="flex flex-wrap justify-center items-center gap-x-1 gap-y-1">
 
             <div class="border border-black rounded p-1.5 text-center flex flex-col">
                 <p class="text-sm">Energy</p>
