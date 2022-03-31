@@ -1,10 +1,15 @@
 require('./bootstrap');
 
 import { createApp } from 'vue'
-import barcodereader from './vue/barcodereader';
+// import barcodereader from './vue/barcodereader';
 
 createApp({
-    components: {
-        barcodereader
+    // components: {
+    //     barcodereader
+    // }
+    data() {
+        return {
+            message: "test123"
+        }
     }
 }).mount('#app');

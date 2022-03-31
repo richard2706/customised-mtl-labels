@@ -17,7 +17,7 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen">
+        <div class="min-h-screen" id="app">
             <!-- Navigation Bar -->
             <nav class="fixed top-0 left-0 right-0 h-14 bg-nutrient-low shadow-lg px-4 sm:px-6 flex items-center">
                 <h2 class="font-bold text-xl">
