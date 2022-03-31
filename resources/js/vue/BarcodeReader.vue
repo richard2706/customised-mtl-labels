@@ -1,10 +1,9 @@
 <script>
     import { ref } from "vue";
     import { StreamBarcodeReader } from 'vue-barcode-reader';
-    // console.log('test');
+    console.log('test');
     
     export default {
-        name: 'barcode-reader', // Name used for HTML tag
         components: {
             StreamBarcodeReader
         },
@@ -27,6 +26,6 @@
 </script>
 
 <template>
-    Barcode Reader
+    <p>Barcode Reader</p>
     <StreamBarcodeReader @loaded="console.log('loaded');"></StreamBarcodeReader>
 </template>

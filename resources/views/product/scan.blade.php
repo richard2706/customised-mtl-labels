@@ -6,6 +6,7 @@
     <div class="flex flex-col items-center">
         <div class="border-2 border-black h-80 w-full flex items-center justify-center">
             <p>Camera here</p>
+            <barcode-reader></barcode-reader>
         </div>
 
         <form method="POST" action="{{ route('product.find') }}" id="barcode-num-form" class="w-full max-w-sm mt-4">
