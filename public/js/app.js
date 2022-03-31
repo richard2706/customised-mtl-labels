@@ -52624,7 +52624,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue_barcode_reader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-barcode-reader */ "./node_modules/vue-barcode-reader/src/index.js");
 
-console.log('test');
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     StreamBarcodeReader: vue_barcode_reader__WEBPACK_IMPORTED_MODULE_0__.StreamBarcodeReader
@@ -52635,6 +52634,9 @@ console.log('test');
     },
     onDecode: function onDecode(barcode) {
       console.log(barcode);
+      this.$root.scannedBarcode = barcode; // somehow get barcode to go to product page
+      // - submit the form on scan.blade.php?
+      // - set the barcode as some global variable? (not good practice but may work)
     }
   }
 });
@@ -52684,6 +52686,11 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
   components: {
     BarcodeReader: _vue_BarcodeReader__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    return {
+      scannedBarcode: 0
+    };
   }
 }).mount('#app');
 
