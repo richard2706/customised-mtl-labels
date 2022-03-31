@@ -1,34 +1,25 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Scan a Product
-        </h2>
+    <x-slot name="title">
+        Scan a Product
     </x-slot>
 
-    <div class="py-12" id="app">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    @if ($errors->any)
-                        @foreach ($errors->all() as $error)
-                            <p>{{ $error }}</p>
-                        @endforeach
-                    @endif
-
-                    <p>barcode reader</p>
-                    <p>@{{ message }}</p>
-
-                    <form method="POST" action="{{ route('product.find') }}">
-                        @csrf
-
-                        <x-label for="name">Barcode number</x-label>
-                        <x-input type="text" name="barcode" value=""/>
-                        <br>
-
-                        <x-button class="mt-2">Show product label</x-button>
-                    </form>
-                </div>
-            </div>
+    <div class="flex flex-col items-center">
+        <div class="border-2 border-black h-80 w-full flex items-center justify-center">
+            <p>Camera here</p>
         </div>
+
+        <form method="POST" action="{{ route('product.find') }}" id="barcode-num-form" class="w-full max-w-sm mt-4">
+            @csrf
+            <div class="flex flex-row justify-center space-x-2">
+                <x-input type="text" name="barcode" value="" placeholder="Manually Enter Barcode" required/>
+                <x-button-submit form="barcode-num-form" class="max-w-max">Done</x-button>
+            </div>
+        </form>
     </div>
+
+    <x-slot name="footer">
+        <div class="flex flex-col items-center space-y-2 p-2">
+            <x-button-secondary href="{{ route('dashboard') }}">Back to Home</x-button-secondary>
+        </div>
+    </x-slot>
 </x-app-layout>

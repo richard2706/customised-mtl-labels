@@ -17,6 +17,9 @@ module.exports = {
                 'nutrient-med': '#ffcc00',
                 'nutrient-high': '#ff0000',
             },
+            screens: {
+                'xs': '320px',
+            }
         },
     },
 

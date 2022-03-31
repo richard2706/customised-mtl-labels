@@ -1,36 +1,20 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<!-- app layout extends the guest layout by adding a log out button. Other slots may be filled when this layout is used. -->
+<x-guest-layout>
+    <x-slot name="title">{{ $title ?? '' }}</x-slot>
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
-
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
-        <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
-
-            <!-- Page Heading -->
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+    <x-slot name="navigation">
+        <div class="ml-auto content-center">
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();"
+                    class="text-gray-800 border-2 border-gray-800 py-1 px-2 sm:hover:bg-black sm:hover:bg-opacity-10 focus:ring focus:ring-black focus:ring-opacity-25">
+                    {{ __('Log Out') }}
+                </a>
+            </form>
         </div>
-    </body>
-</html>
+    </x-slot>
+
+    <x-slot name="slot">{{ $slot ?? '' }}</x-slot>
+
+    <x-slot name="footer">{{ $footer ?? '' }}</x-slot>
+</x-guest-layout>
