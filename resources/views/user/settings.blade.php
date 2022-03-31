@@ -44,7 +44,7 @@
                 </div>
             </div>
 
-            <div class="flex flex-col w-full max-w-lg mt-8 gap-y-2">
+            <div class="flex flex-col w-full max-w-lg mt-8 gap-y-4">
                 <h1 class="text-lg text-center font-bold">Your Intake Profile</h1>
 
                 <div class="w-full p-2 border-2 border-gray-300">
@@ -215,8 +215,10 @@
 
             <x-slot name="footer">
                 <div class="flex flex-col items-center space-y-2 p-2">
-                    <x-button-secondary href="{{ route('dashboard') }}">Return Without Saving</x-button-secondary>
-                    <x-button-submit form="settings-form">Save Settings</x-button-submit>
+                    <div class="w-full flex flex-col items-center sm:flex-row gap-2">
+                        <x-button-secondary href="{{ route('dashboard') }}">Return Without Saving</x-button-secondary>
+                        <x-button-submit form="settings-form">Save Settings</x-button-submit>
+                    </div>
                 </div>
             </x-slot>
         </form>
