@@ -52634,9 +52634,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     onDecode: function onDecode(barcode) {
       console.log(barcode);
-      this.$root.scannedBarcode = barcode; // somehow get barcode to go to product page
-      // - submit the form on scan.blade.php?
-      // - set the barcode as some global variable? (not good practice but may work)
+      this.$root.scannedBarcode = barcode;
+      window.location.href = '/product/' + barcode;
     }
   }
 });
