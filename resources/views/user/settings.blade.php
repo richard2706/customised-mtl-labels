@@ -3,7 +3,7 @@
         {{ $user->name }}'s Settings
     </x-slot>
 
-    <div class="flex flex-col items-center pb-16">
+    <div class="flex flex-col items-center pb-32">
         <x-auth-validation-errors :errors="$errors" />
 
         <x-auth-session-status :status="session('message')" />
@@ -215,6 +215,7 @@
 
             <x-slot name="footer">
                 <div class="flex flex-col items-center space-y-2 p-2">
+                    <x-button-secondary href="{{ route('dashboard') }}">Return Without Saving</x-button-secondary>
                     <x-button-submit form="settings-form">Save Settings</x-button-submit>
                 </div>
             </x-slot>
