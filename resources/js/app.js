@@ -9,7 +9,7 @@ createApp({
     },
     data() {
         return {
-            scannedBarcode: 0,
+            scannedBarcode: -1,
         }
     }
 }).mount('#app');

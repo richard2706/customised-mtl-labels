@@ -52689,7 +52689,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
   },
   data: function data() {
     return {
-      scannedBarcode: 0
+      scannedBarcode: -1
     };
   }
 }).mount('#app');
