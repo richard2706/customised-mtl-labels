@@ -52654,22 +52654,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Barcode Reader", -1
-/* HOISTED */
-);
-
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_StreamBarcodeReader = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("StreamBarcodeReader");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StreamBarcodeReader, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_StreamBarcodeReader, {
     onLoaded: $options.onLoaded,
     onDecode: $options.onDecode
   }, null, 8
   /* PROPS */
-  , ["onLoaded", "onDecode"])], 64
-  /* STABLE_FRAGMENT */
-  );
+  , ["onLoaded", "onDecode"]);
 }
 
 /***/ }),

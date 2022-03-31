@@ -18,6 +18,5 @@
 </script>
 
 <template>
-    <p>Barcode Reader</p>
     <StreamBarcodeReader @loaded="onLoaded" @decode="onDecode"></StreamBarcodeReader>
 </template>
