@@ -211,8 +211,6 @@
                         </div>
                     </div>
                 </div>
-
-                <p>@{{ message }}</p>
             </div>
 
             <x-slot name="footer">

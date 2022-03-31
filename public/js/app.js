@@ -52622,26 +52622,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var vue_barcode_reader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-barcode-reader */ "./node_modules/vue-barcode-reader/src/index.js");
-
+/* harmony import */ var vue_barcode_reader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-barcode-reader */ "./node_modules/vue-barcode-reader/src/index.js");
 
 console.log('test');
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    StreamBarcodeReader: vue_barcode_reader__WEBPACK_IMPORTED_MODULE_1__.StreamBarcodeReader
-  } // methods: {
-  //     onLoaded() {
-  //         console.log('loaded');
-  //     }
-  // }
-
-}); // function onDecode(text) {
-//     console.log('decoded');
-// }
-// const onLoaded = () => {
-//     console.log("loaded");
-// };
+    StreamBarcodeReader: vue_barcode_reader__WEBPACK_IMPORTED_MODULE_0__.StreamBarcodeReader
+  },
+  methods: {
+    onLoaded: function onLoaded() {
+      console.log('loaded');
+    },
+    onDecode: function onDecode(barcode) {
+      console.log(barcode);
+    }
+  }
+});
 
 /***/ }),
 
@@ -52667,10 +52663,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_StreamBarcodeReader = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("StreamBarcodeReader");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StreamBarcodeReader, {
-    onLoaded: _cache[0] || (_cache[0] = function ($event) {
-      _ctx.console.log('loaded');
-    })
-  })], 64
+    onLoaded: $options.onLoaded,
+    onDecode: $options.onDecode
+  }, null, 8
+  /* PROPS */
+  , ["onLoaded", "onDecode"])], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -52694,11 +52691,6 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
   components: {
     BarcodeReader: _vue_BarcodeReader__WEBPACK_IMPORTED_MODULE_1__["default"]
-  },
-  data: function data() {
-    return {
-      message: "test123"
-    };
   }
 }).mount('#app');
 

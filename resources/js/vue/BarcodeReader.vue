@@ -1,5 +1,4 @@
 <script>
-    import { ref } from "vue";
     import { StreamBarcodeReader } from 'vue-barcode-reader';
     console.log('test');
     
@@ -7,25 +6,18 @@
         components: {
             StreamBarcodeReader
         },
-        // methods: {
-        //     onLoaded() {
-        //         console.log('loaded');
-        //     }
-        // }
+        methods: {
+            onLoaded() {
+                console.log('loaded')
+            },
+            onDecode(barcode) {
+                console.log(barcode);
+            }
+        }
     }
-
-    // function onDecode(text) {
-    //     console.log('decoded');
-    // }
-        
-
-    // const onLoaded = () => {
-    //     console.log("loaded");
-    // };
-    
 </script>
 
 <template>
     <p>Barcode Reader</p>
-    <StreamBarcodeReader @loaded="console.log('loaded');"></StreamBarcodeReader>
+    <StreamBarcodeReader @loaded="onLoaded" @decode="onDecode"></StreamBarcodeReader>
 </template>
