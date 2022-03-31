@@ -215,7 +215,7 @@
 
             <x-slot name="footer">
                 <div class="flex flex-col items-center space-y-2 p-2">
-                    <div class="w-full flex flex-col items-center sm:flex-row gap-2">
+                    <div class="w-full flex flex-col sm:flex-row items-center justify-center gap-2">
                         <x-button-secondary href="{{ route('dashboard') }}">Return Without Saving</x-button-secondary>
                         <x-button-submit form="settings-form">Save Settings</x-button-submit>
                     </div>
