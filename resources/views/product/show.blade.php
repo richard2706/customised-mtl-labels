@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="title">
-        {{ $productName }}
+        Nutritional Guidelines
     </x-slot>
 
     <div class="flex flex-col justify-center items-center pb-32">
@@ -8,7 +8,7 @@
             <x-product-label :barcode="$barcode"/>
         @else
             <p>The barcode number is invalid</p>
-            <i>{{ $barcode }}</i>
+            <i>#{{ $barcode }}</i>
         @endif
     </div>
 
