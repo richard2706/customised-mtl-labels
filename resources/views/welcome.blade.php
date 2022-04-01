@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="flex flex-col items-center mt-2 pb-32">
+    <div class="flex flex-col items-center mt-2 short:pb-32">
         <p>Welcome page</p>
         <p>TODO write a welcome message and show demo/screenshots</p>
     </div>

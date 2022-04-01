@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-slot name="title">Reset Password</x-slot>
     
-    <div class="flex flex-col items-center pb-0">
+    <div class="flex flex-col items-center short:pb-16">
 
         <p class="test-center text-sm my-2">
             This is a secure area of the application. Please confirm your password before continuing.

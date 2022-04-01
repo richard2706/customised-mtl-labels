@@ -3,7 +3,7 @@
         {{ $user->name }}'s Settings
     </x-slot>
 
-    <div class="flex flex-col items-center pb-32">
+    <div class="flex flex-col items-center short:pb-32">
         <x-auth-validation-errors :errors="$errors" />
 
         <x-auth-session-status :status="session('message')" />

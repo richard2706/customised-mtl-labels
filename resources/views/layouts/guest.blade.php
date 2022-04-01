@@ -33,7 +33,7 @@
             </main>
 
             <!-- Optional Footer -->
-            <div class="fixed bottom-0 left-0 right-0 bg-white">
+            <div class="short:fixed short:bottom-0 short:left-0 short:right-0 mt-4 short:mt-0 bg-white">
                 {{ $footer ?? '' }}
             </div>
         </div>

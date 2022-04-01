@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-slot name="title">Verify Email</x-slot>
 
-    <div class="flex flex-col items-center pb-32">
+    <div class="flex flex-col items-center short:pb-32">
         <p class="text-center">Thank you for signing up! Please verify your email address by clicking on the link sent to your email. If you didn't receive the email, please click the button below to have the email resent.</p>
 
         @if (session('status') == 'verification-link-sent')

@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-slot name="title">Create Account</x-slot>
 
-    <div class="flex flex-col items-center pb-32">
+    <div class="flex flex-col items-center short:pb-32">
         
         <!-- Validation Errors -->
         @if ($errors->any() == 0)

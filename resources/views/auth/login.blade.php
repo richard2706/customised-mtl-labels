@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-slot name="title">Log In</x-slot>
 
-    <div class="flex flex-col items-center pb-44">
+    <div class="flex flex-col items-center short:pb-44">
         <!-- Session Status -->
         <x-auth-session-status :status="session('status')" />
 

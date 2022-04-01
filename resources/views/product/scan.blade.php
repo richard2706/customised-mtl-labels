@@ -3,7 +3,7 @@
         Scan a Barcode
     </x-slot>
 
-    <div class="flex flex-col items-center -mt-4 sm:mt-0 pb-16 gap-y-2">
+    <div class="flex flex-col items-center -mt-4 sm:mt-0 short:pb-16 gap-y-2">
         <div class="flex items-center justify-center relative -mx-2">
             <barcode-reader class="z-0"></barcode-reader>
             <div v-if="scannedBarcode != -1" class="z-10 absolute bg-white text-center py-2 px-3 shadow-lg">

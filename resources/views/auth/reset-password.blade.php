@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-slot name="title">Reset Password</x-slot>
 
-    <div class="flex flex-col items-center pb-16">
+    <div class="flex flex-col items-center short:pb-16">
         <!-- Validation Errors -->
         <x-auth-validation-errors :errors="$errors" />
 

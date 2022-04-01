@@ -19,6 +19,7 @@ module.exports = {
             },
             screens: {
                 'xs': '320px',
+                'short': { 'raw': '(min-height: 480px)' }
             }
         },
     },
