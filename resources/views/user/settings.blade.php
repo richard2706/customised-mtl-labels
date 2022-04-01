@@ -214,7 +214,7 @@
             </div>
 
             <x-slot name="footer">
-                <div class="flex flex-col items-center space-y-2 p-2">
+                <div class="flex flex-col items-center gap-y-2 p-2">
                     <div class="w-full flex flex-col sm:flex-row items-center justify-center gap-2">
                         <x-button-secondary href="{{ route('dashboard') }}">Return Without Saving</x-button-secondary>
                         <x-button-submit form="settings-form">Save Settings</x-button-submit>
@@ -222,5 +222,15 @@
                 </div>
             </x-slot>
         </form>
+
+        <div class="flex flex-col items-center gap-y-2 mt-8 w-full max-w-2xl">
+            <h1 class="text-lg font-bold">Credits</h1>
+            <div class="flex flex-col gap-y-1">
+                <p>Barcode reader implemented by Dmytro Olefyrenko and others.</p>
+                <a href="https://github.com/olefirenko/vue-barcode-reader" target="_" class="max-w-max py-1 px-2 text-center border-2 border-blue-600 focus:ring focus:ring-blue-600 focus:ring-opacity-50">
+                    See <span class="font-bold">vue-barcode-reader</span> on GitHub
+                </a>
+            </div>
+        </div>
     </div>
 </x-app-layout>
