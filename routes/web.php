@@ -30,12 +30,12 @@ Route::post('/settings/update/{user}', [UserController::class, 'update'])
     ->middleware(['auth'])->name('user.update');
 
 Route::get('/scan', [ProductController::class, 'scan'])
-    ->middleware(['auth'])->name('product.scan');
+    ->name('product.scan');
 
 Route::post('/scan', [ProductController::class, 'findProduct'])
-    ->middleware(['auth'])->name('product.find');
+    ->name('product.find');
 
 Route::get('/product/{barcode}', [ProductController::class, 'label'])
-    ->middleware(['auth'])->name('product.show');
+    ->name('product.show');
 
 require __DIR__.'/auth.php';

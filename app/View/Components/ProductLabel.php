@@ -68,24 +68,42 @@ class ProductLabel extends Component
 
             // Determine colour category for each nutrient (based on per 100g info)
             $currentUser = Auth::user();
-            $userBoundaries = [
-                $allLabelKeys[2] => [
+            $userBoundaries = $currentUser ? [
+                $allLabelKeys[2] => [ // fat
                     'med' => $currentUser->intakeProfile->med_total_fat_boundary,
                     'high' => $currentUser->intakeProfile->high_total_fat_boundary,
                 ],
-                $allLabelKeys[3] => [
+                $allLabelKeys[3] => [ // saturated fat
                     'med' => $currentUser->intakeProfile->med_saturated_fat_boundary,
                     'high' => $currentUser->intakeProfile->high_saturated_fat_boundary,
                 ],
-                $allLabelKeys[4] => [
+                $allLabelKeys[4] => [ // sugars
                     'med' => $currentUser->intakeProfile->med_total_sugar_boundary,
                     'high' => $currentUser->intakeProfile->high_total_sugar_boundary,
                 ],
-                $allLabelKeys[5] => [
+                $allLabelKeys[5] => [ // salt
                     'med' => $currentUser->intakeProfile->med_salt_boundary,
                     'high' => $currentUser->intakeProfile->high_salt_boundary,
                 ]
+            ] : [
+                $allLabelKeys[2] => [ // fat
+                    'med' => 3,
+                    'high' => 17.5,
+                ],
+                $allLabelKeys[3] => [ // saturated fat
+                    'med' => 1.5,
+                    'high' => 5,
+                ],
+                $allLabelKeys[4] => [ // sugars
+                    'med' => 5,
+                    'high' => 22.5,
+                ],
+                $allLabelKeys[5] => [ // salt
+                    'med' => 0.3,
+                    'high' => 1.5,
+                ]
             ];
+
             foreach (array_slice($allLabelKeys, -4) as $nutrient) {
                 if (is_null($this->nutrientValues[$nutrient])) {
                     $this->nutrientColourStyles[$nutrient] = 'bg-white'; // White
@@ -101,7 +119,6 @@ class ProductLabel extends Component
                 }
             }
 
-            
             // Adjust label values for specified number of portions
             $numPortions = 1;
             $this->portionSize = array_key_exists('serving_size', $product) ? floatval($product['serving_size']) : 100;
@@ -117,14 +134,21 @@ class ProductLabel extends Component
             $this->energyKJUnits = array_key_exists('energy-kj_unit', $product['nutriments']) ? $product['nutriments']['energy-kj_unit'] : 'kJ';
             $this->energyKcalUnits = array_key_exists('energy-kcal_unit', $product['nutriments']) ? $product['nutriments']['energy-kcal_unit'] : 'kcal';
 
-            // Calculate percentage of user's intake
-            $userIntake = [
+            // Calculate percentage of user's customised intake, or government reference intake if user not logged in
+            $userIntake = $currentUser ? [
                 $allLabelKeys[1] => $currentUser->intakeProfile->max_calories,
                 $allLabelKeys[2] => $currentUser->intakeProfile->max_total_fat,
                 $allLabelKeys[3] => $currentUser->intakeProfile->max_saturated_fat,
                 $allLabelKeys[4] => $currentUser->intakeProfile->max_total_sugar,
                 $allLabelKeys[5] => $currentUser->intakeProfile->max_salt,
+            ] : [
+                $allLabelKeys[1] => 2000, // calories
+                $allLabelKeys[2] => 70, // fat
+                $allLabelKeys[3] => 20, // saturated fat
+                $allLabelKeys[4] => 90, // sugars
+                $allLabelKeys[5] => 6, // salt
             ];
+
             foreach ($this->nutrientValues as $key => $value) {
                 if (!is_null($value) && strcmp($key, $allLabelKeys[0]) != 0) {
                     $this->percentageIntakes[$key] = 100 * $this->nutrientValues[$key] / $userIntake[$key];
@@ -133,7 +157,6 @@ class ProductLabel extends Component
         } else {
             $this->labelSuccessful = false;
         }
-        // dd($this->nutrientColourStyles);
     }
 
     /**
