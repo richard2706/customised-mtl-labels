@@ -97,20 +97,64 @@ class UserController extends Controller
                 'lte:' . $maxIntakeProfile['max_calories'],
                 'gte:' . $minIntakeProfile['max_calories']
             ],
+
+            'med_total_fat_boundary' => [
+                'required',
+                'gt:0',
+                'lte:high_total_fat_boundary'
+            ],
+            'high_total_fat_boundary' => [
+                'required',
+                'gte:med_total_fat_boundary',
+                'lte:max_total_fat'
+            ],
             'max_total_fat' => [
                 'required',
                 'lte:' . $maxIntakeProfile['max_total_fat'],
                 'gte:' . $minIntakeProfile['max_total_fat']
+            ],
+            
+            'med_saturated_fat_boundary' => [
+                'required',
+                'gt:0',
+                'lte:high_saturated_fat_boundary'
+            ],
+            'high_saturated_fat_boundary' => [
+                'required',
+                'gte:med_saturated_fat_boundary',
+                'lte:max_saturated_fat'
             ],
             'max_saturated_fat' => [
                 'required',
                 'lte:' . $maxIntakeProfile['max_saturated_fat'],
                 'gte:' . $minIntakeProfile['max_saturated_fat']
             ],
+            
+            'med_total_sugar_boundary' => [
+                'required',
+                'gt:0',
+                'lte:high_total_sugar_boundary'
+            ],
+            'high_total_sugar_boundary' => [
+                'required',
+                'gte:med_total_sugar_boundary',
+                'lte:max_total_sugar'
+            ],
             'max_total_sugar' => [
                 'required',
                 'lte:' . $maxIntakeProfile['max_total_sugar'],
                 'gte:' . $minIntakeProfile['max_total_sugar']
+            ],
+            
+            'med_salt_boundary' => [
+                'required',
+                'gt:0',
+                'lte:high_salt_boundary'
+            ],
+            'high_salt_boundary' => [
+                'required',
+                'gte:med_salt_boundary',
+                'lte:max_salt'
             ],
             'max_salt' => [
                 'required',

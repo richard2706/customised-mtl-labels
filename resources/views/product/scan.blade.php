@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="title">
-        Scan a Product
+        Scan a Barcode
     </x-slot>
 
     <div class="flex flex-col items-center -mt-4 pb-16 gap-y-2">
