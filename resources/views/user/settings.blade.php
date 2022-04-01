@@ -8,10 +8,10 @@
 
         <x-auth-session-status :status="session('message')" />
 
-        <form method="POST" action="{{ route('user.update', compact('user')) }}" id="settings-form" class="flex flex-col items-center mt-2 w-full max-w-2xl">
+        <form method="POST" action="{{ route('user.update', compact('user')) }}" id="settings-form" class="flex flex-col items-center mt-2 w-full">
             @csrf
             
-            <div class="flex flex-col items-center w-full max-w-sm">
+            <div class="flex flex-col items-center max-w-sm">
                 <h1 class="text-lg font-bold">Your Details</h1>
 
                 <div class="w-full">
@@ -44,7 +44,7 @@
                 </div>
             </div>
 
-            <div class="flex flex-col w-full max-w-lg mt-8 gap-y-4">
+            <div class="flex flex-col mt-8 gap-y-4 w-full max-w-xl">
                 <h1 class="text-lg text-center font-bold">Your Intake Profile</h1>
 
                 <div class="w-full p-2 border-2 border-gray-300">
@@ -223,13 +223,27 @@
             </x-slot>
         </form>
 
-        <div class="flex flex-col items-center gap-y-2 mt-8 w-full max-w-2xl">
-            <h1 class="text-lg font-bold">Credits</h1>
-            <div class="flex flex-col gap-y-1">
-                <p>Barcode reader implemented by Dmytro Olefyrenko and others.</p>
-                <a href="https://github.com/olefirenko/vue-barcode-reader" target="_" class="max-w-max py-1 px-2 text-center border-2 border-blue-600 focus:ring focus:ring-blue-600 focus:ring-opacity-50">
-                    See <span class="font-bold">vue-barcode-reader</span> on GitHub
-                </a>
+        <div class="mt-8 max-w-xl">
+            <h1 class="text-center text-lg font-bold">Credits</h1>
+            <div class="flex flex-col gap-y-4 mt-2">
+                <div class="flex flex-col gap-y-1">
+                    <p>Barcode reader implemented using <span class="font-bold">vue-barcode-reader</span> by Dmytro Olefyrenko and others.</p>
+                    <a href="https://github.com/olefirenko/vue-barcode-reader" target="_" class="max-w-max py-0.5 px-1.5 text-center border-2 border-blue-600 focus:ring focus:ring-blue-600 focus:ring-opacity-50">
+                        See vue-barcode-reader on GitHub
+                    </a>
+                </div>
+                <div class="flex flex-col gap-y-1">
+                    <p>Product data from <span class="font-bold">Open Food Facts</span> Database.</p>
+                    <a href="https://openfoodfacts.org/" target="_" class="max-w-max py-0.5 px-1.5 text-center border-2 border-blue-600 focus:ring focus:ring-blue-600 focus:ring-opacity-50">
+                        Go to Open Food Facts website
+                    </a>
+                </div>
+                <div class="flex flex-col gap-y-1">
+                    <p>Access to Open Food Facts database through <span class="font-bold">Laravel Open Food Facts API</span> on GitHub.</p>
+                    <a href="https://github.com/openfoodfacts/openfoodfacts-laravel" target="_" class="max-w-max py-0.5 px-1.5 text-center border-2 border-blue-600 focus:ring focus:ring-blue-600 focus:ring-opacity-50">
+                        See Laravel Open Food Facts API on GitHub
+                    </a>
+                </div>
             </div>
         </div>
     </div>
