@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ScanHistory;
 use Illuminate\Http\Request;
 use OpenFoodFacts;
 
@@ -39,13 +40,19 @@ class ProductController extends Controller
         $numPortions = $numPortions > 0 ? $numPortions : 1;
         // Check product exists
         $product = OpenFoodFacts::barcode($barcode);
-        if (empty($product)) {
-            $productFound = false;
-            $productName = 'Invalid barcode';
-        } else {
-            $productFound = true;
-            $productName = $product['product_name'];
+
+        $productFound = !empty($product);
+        $productName = $productFound ? $product['product_name'] : 'Invalid barcode';
+
+        // Add to scan history
+        if ($productFound) {
+            // check that product not already most recently scanned (e.g. user just reloading page)
+            $historyEntry = ScanHistory::create([
+                'barcode' => $barcode,
+                'product_name' => $productName
+            ]);
         }
+
         return view('product.show', compact('barcode', 'productFound', 'productName', 'numPortions'));
     }
 
