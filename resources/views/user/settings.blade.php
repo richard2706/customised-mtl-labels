@@ -223,6 +223,34 @@
             </x-slot>
         </form>
 
+        <form method="POST" action="{{ route('user.update', compact('user')) }}" id="reset-user-form" class="mt-4">
+            @csrf
+            
+            <input type="text" name="name" value="{{ $user->name }}" hidden>
+            <input type="text" name="gender" value="{{ App\Enums\Gender::UNSPECIFIED->value }}" hidden>
+            <input type="text" name="age_category" value="{{ App\Enums\AgeCategory::DEFAULT->value }}" hidden>
+
+            <input type="number" name="max_calories" value="2000" hidden>
+
+            <input type="number" step="0.1" name="med_total_fat_boundary" value="3" hidden>
+            <input type="number" step="0.1" name="high_total_fat_boundary" value="17.5" hidden>
+            <input type="number" step="0.1" name="max_total_fat" value="70" hidden>
+
+            <input type="number" step="0.1" name="med_saturated_fat_boundary" value="1.5" hidden>
+            <input type="number" step="0.1" name="high_saturated_fat_boundary" value="5" hidden>
+            <input type="number" step="0.1" name="max_saturated_fat" value="20" hidden>
+
+            <input type="number" step="0.1" name="med_total_sugar_boundary" value="5" hidden>
+            <input type="number" step="0.1" name="high_total_sugar_boundary" value="22.5" hidden>
+            <input type="number" step="0.1" name="max_total_sugar" value="90" hidden>
+            
+            <input type="number" step="0.1" name="med_salt_boundary" value="0.3" hidden>
+            <input type="number" step="0.1" name="high_salt_boundary" value="1.5" hidden>
+            <input type="number" step="0.1" name="max_salt" value="6" hidden>
+
+            <x-button-submit form="reset-user-form">Reset All to the Reference Intake</x-button-submit>
+        </form>
+
         <div class="mt-8 max-w-xl">
             <h1 class="text-center text-lg font-bold">Credits</h1>
             <div class="flex flex-col gap-y-4 mt-2">
