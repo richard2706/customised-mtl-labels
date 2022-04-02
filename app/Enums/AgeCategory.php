@@ -15,13 +15,6 @@ enum AgeCategory: String
     case SEVENTY_FIVE_PLUS = '75+';
 
     public const DEFAULT = self::NINETEEN_TO_SIXTY_FOUR;
-    public const REFERENCE_INTAKE = [
-        'max_calories' => 2000,
-        'max_total_fat' => 70,
-        'max_saturated_fat' => 20,
-        'max_total_sugar' => 90,
-        'max_salt' => 6,
-    ];
 
     /**
      * Returns the age category from the given value.

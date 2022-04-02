@@ -51,8 +51,7 @@ class RegisteredUserController extends Controller
             'age_category' => AgeCategory::DEFAULT->value,
         ]);
 
-        $intakeProfile = AgeCategory::REFERENCE_INTAKE;
-        $user->intakeProfile()->create($intakeProfile);
+        $user->intakeProfile()->create();
 
         event(new Registered($user));
 
