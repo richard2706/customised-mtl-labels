@@ -4,7 +4,11 @@
         <p class="text-xs">#{{ $barcode }}</p>
     </div>
 
-    <p><span class="font-semibold">{{ $portionSize }} {{ $productUnits }}</span> contains:</p>
+    @if ($numPortions == 1)
+        <p>A <span class="font-bold">{{ $portionSize }} {{ $productUnits }}</span> portion contains:</p>
+    @else
+        <p><span class="font-bold">{{ $numPortions * $portionSize }} {{ $productUnits }}</span> ({{ $numPortions }} {{ $portionSize }} {{ $productUnits }} portions) contains:</p>
+    @endif
 
     <div class="flex flex-wrap justify-center items-center gap-1">
         <div class="border border-black p-1.5 text-center flex flex-col">

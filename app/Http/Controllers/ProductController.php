@@ -32,7 +32,7 @@ class ProductController extends Controller
      * Show the page which shows a label for the scanned product, or an error message if the
      * barcode is invalid.
      */
-    public function label($barcode)
+    public function label($barcode, $numPortions = 1)
     {
         // Check product exists
         $product = OpenFoodFacts::barcode($barcode);
@@ -43,7 +43,7 @@ class ProductController extends Controller
             $barcodeIsValid = true;
             $productName = $product['product_name'];
         }
-        return view('product.show', compact('barcode', 'barcodeIsValid', 'productName'));
+        return view('product.show', compact('barcode', 'barcodeIsValid', 'productName', 'numPortions'));
     }
 
     // add function for barcode validation and checking product exists

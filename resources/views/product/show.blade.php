@@ -5,7 +5,7 @@
 
     <div class="flex flex-col justify-center items-center short:pb-32">
         @if ($barcodeIsValid)
-            <x-product-label :barcode="$barcode"/>
+            <x-product-label :barcode="$barcode" :numPortions="$numPortions"/>
             @guest
                 <p class="text-center mt-4 max-w-lg">Log in to customise the traffic light nutrition label to your nutritional needs.</p>
             @endguest

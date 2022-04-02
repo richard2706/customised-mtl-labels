@@ -11,6 +11,9 @@ class ProductLabel extends Component
     /** Whether there is sufficient data to generate the label. */
     public $labelSuccessful;
 
+    /** Whether the portion size data is available. */
+    public $portionSizeSpecified;
+
     /** Name of the product. */
     public $productName;
 
@@ -19,6 +22,9 @@ class ProductLabel extends Component
 
     /** Size of each portion of the product. */
     public $portionSize;
+
+    /** Number of portions for which the traffic light label shows nutritional information. */
+    public $numPortions;
 
     /** Nutrition values per portion or 100g/ml */
     public $nutrientValues;
@@ -44,7 +50,7 @@ class ProductLabel extends Component
      *
      * @return void
      */
-    public function __construct($barcode)
+    public function __construct($barcode, $numPortions)
     {
         $this->barcode = $barcode;
         $product = OpenFoodFacts::barcode($barcode);
@@ -65,6 +71,21 @@ class ProductLabel extends Component
             foreach ($allLabelKeys as $key) {
                 $this->nutrientValues[$key] = array_key_exists($key, $product['nutriments']) ? floatval($product['nutriments'][$key]) : null;
             }
+
+            
+            // Adjust label values for specified number of portions (if portion size info available)
+            $this->portionSizeSpecified = array_key_exists('serving_size', $product);
+            // dd($this->portionSizeSpecified);/
+            $this->numPortions = $this->portionSizeSpecified && $numPortions >= 1 ? $numPortions : 1;
+            $this->portionSize = $this->portionSizeSpecified ? floatval($product['serving_size']) : 100;
+            if ($this->portionSizeSpecified) {
+                foreach ($this->nutrientValues as $key => $value) {
+                    if (!is_null($value)) {
+                        $this->nutrientValues[$key] *= $numPortions * $this->portionSize / 100;
+                    }
+                }
+            }
+
 
             // Determine colour category for each nutrient (based on per 100g info)
             $currentUser = Auth::user();
@@ -116,15 +137,6 @@ class ProductLabel extends Component
 
                 } else {
                     $this->nutrientColourStyles[$nutrient] = 'bg-nutrient-high text-white'; // Red
-                }
-            }
-
-            // Adjust label values for specified number of portions
-            $numPortions = 1;
-            $this->portionSize = array_key_exists('serving_size', $product) ? floatval($product['serving_size']) : 100;
-            foreach ($this->nutrientValues as $key => $value) {
-                if (!is_null($value)) {
-                    $this->nutrientValues[$key] *= $numPortions * $this->portionSize / 100;
                 }
             }
 

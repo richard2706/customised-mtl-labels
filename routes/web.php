@@ -35,7 +35,7 @@ Route::get('/scan', [ProductController::class, 'scan'])
 Route::post('/scan', [ProductController::class, 'findProduct'])
     ->name('product.find');
 
-Route::get('/product/{barcode}', [ProductController::class, 'label'])
+Route::get('/product/{barcode}/{numPortions?}', [ProductController::class, 'label'])
     ->name('product.show');
 
 require __DIR__.'/auth.php';
