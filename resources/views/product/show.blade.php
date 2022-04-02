@@ -3,7 +3,7 @@
         Nutritional Guidelines
     </x-slot>
 
-    <div class="flex flex-col justify-center items-center gap-y-4 short:pb-32">
+    <div class="flex flex-col justify-center items-center gap-y-4 @auth short:pb-48 @else short:pb-32 @endauth">
         @if ($barcodeIsValid)
             <x-product-label :barcode="$barcode" :numPortions="$numPortions"/>
 
