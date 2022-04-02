@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-app-layout>
     <x-slot name="title">Log In</x-slot>
 
     <div class="flex flex-col items-center short:pb-44">
@@ -57,4 +57,4 @@
             </x-slot>
         </form>
     </div>
-</x-guest-layout>
+</x-app-layout>

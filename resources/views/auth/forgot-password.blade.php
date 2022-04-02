@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-app-layout>
     <x-slot name="title">Forgot Password</x-slot>
 
     <div class="flex flex-col items-center short:pb-32">
@@ -32,4 +32,4 @@
             </x-slot>
         </form>
     </div>
-</x-guest-layout>
+</x-app-layout>

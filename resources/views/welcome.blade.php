@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-app-layout>
     <div class="flex flex-col text-center items-center gap-y-4 mx-auto max-w-xl short:pb-32">
         <p>Scan any product's barcode then you will be shown its traffic light nutrition label. This provides a visual representation of the nutritional value of one portion of the product.</p>
         <p>If you log in, then you can customise for each nutrient, when the traffic light label shows it as green, amber or red.</p>
@@ -12,4 +12,4 @@
             <x-button-primary href="{{ route('login') }}">Login</x-button-primary>
         </div>
     </x-slot>
-</x-guest-layout>
+</x-app-layout>

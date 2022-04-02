@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-app-layout>
     <x-slot name="title">Verify Email</x-slot>
 
     <div class="flex flex-col items-center short:pb-32">
@@ -30,4 +30,4 @@
             </form>
         </div>
     </div>
-</x-guest-layout>
+</x-app-layout>
