@@ -4,7 +4,7 @@
     </x-slot>
 
     <div class="flex flex-col justify-center items-center gap-y-4 @auth short:pb-48 @else short:pb-32 @endauth">
-        @if ($barcodeIsValid)
+        @if ($productFound)
             <x-product-label :barcode="$barcode" :numPortions="$numPortions"/>
 
             @guest
@@ -21,8 +21,8 @@
                 </div>
             </form>
         @else
-            <p>The barcode number is invalid</p>
-            <i>#{{ $barcode }}</i>
+            <p>The product could not be identified.</p>
+            <i>Barcode number: #{{ $barcode }}</i>
         @endif
     </div>
 
