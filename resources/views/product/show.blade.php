@@ -6,14 +6,13 @@
     <div class="flex flex-col justify-center items-center short:pb-32">
         @if ($barcodeIsValid)
             <x-product-label :barcode="$barcode"/>
+            @guest
+                <p class="text-center mt-4 max-w-lg">Log in to customise the traffic light nutrition label to your nutritional needs.</p>
+            @endguest
         @else
             <p>The barcode number is invalid</p>
             <i>#{{ $barcode }}</i>
         @endif
-
-        @guest
-            <p class="text-center mt-4 max-w-lg">Log in to customise the traffic light nutrition label to your nutritional needs.</p>
-        @endguest
     </div>
 
     <x-slot name="footer">
