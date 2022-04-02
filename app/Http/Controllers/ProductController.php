@@ -23,9 +23,11 @@ class ProductController extends Controller
         // validate barcode and check product exists
         $request->validate([
             'barcode' => ['required', 'numeric'],
+            'numPortions' => ['nullable', 'numeric', 'gt:0']
         ]);
         $barcode = $request->barcode;
-        return redirect()->route('product.show', compact('barcode'));
+        $numPortions = $request->numPortions;
+        return redirect()->route('product.show', compact('barcode', 'numPortions'));
     }
     
     /**
@@ -34,6 +36,7 @@ class ProductController extends Controller
      */
     public function label($barcode, $numPortions = 1)
     {
+        $numPortions = $numPortions > 0 ? $numPortions : 1;
         // Check product exists
         $product = OpenFoodFacts::barcode($barcode);
         if (empty($product)) {
