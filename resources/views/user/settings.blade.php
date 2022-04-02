@@ -223,7 +223,7 @@
             </x-slot>
         </form>
 
-        <form method="POST" action="{{ route('user.update', compact('user')) }}" id="reset-user-form" class="mt-4">
+        <form method="POST" action="{{ route('user.update', compact('user')) }}" onsubmit="return confirm('Are you sure you would like to reset your settings?');" id="reset-user-form" class="mt-4">
             @csrf
             
             <input type="text" name="name" value="{{ $user->name }}" hidden>
