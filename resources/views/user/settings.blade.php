@@ -53,7 +53,7 @@
                         <div>
                             <h3>Daily maximum <i class="text-xs text-gray-700">{{ $ageCategory->minCategoryIntake($gender, 'max_calories') }}kcal to {{ $ageCategory->maxCategoryIntake($gender, 'max_calories') }}kcal</i></h3>
                             <div class="flex items-center gap-x-2 w-32 mt-1">
-                                <x-input type="number" name="max_calories" value="{{ $user->intakeProfile->max_calories }}"/>
+                                <x-input type="number" min="{{ $ageCategory->minCategoryIntake($gender, 'max_calories') }}" max="{{ $ageCategory->maxCategoryIntake($gender, 'max_calories') }}" name="max_calories" value="{{ $user->intakeProfile->max_calories }}"/>
                                 <p>kcal</p>
                             </div>
                         </div>
@@ -66,21 +66,21 @@
                         <div>
                             <h3>Amber boundary</h3>
                             <div class="flex items-center gap-x-2 w-32 mt-1">
-                                <x-input class="w-24" type="number" step=".1" name="med_total_fat_boundary" value="{{ $user->intakeProfile->med_total_fat_boundary }}"/>
+                                <x-input class="w-24" type="number" step=".1" min="0" name="med_total_fat_boundary" value="{{ $user->intakeProfile->med_total_fat_boundary }}"/>
                                 <p class="text-sm">g per 100g</p>
                             </div>
                         </div>
                         <div>
                             <h3>Red boundary</h3>
                             <div class="flex items-center gap-x-2 w-32 mt-1">
-                                <x-input class="w-24" type="number" step=".1" name="high_total_fat_boundary" value="{{ $user->intakeProfile->high_total_fat_boundary }}"/>
+                                <x-input class="w-24" type="number" step=".1" min="0" name="high_total_fat_boundary" value="{{ $user->intakeProfile->high_total_fat_boundary }}"/>
                                     <p class="text-sm">g per 100g</p>
                                 </div>
                             </div>
                         <div>
                             <h3>Daily maximum <i class="text-xs text-gray-700">{{ $ageCategory->minCategoryIntake($gender, 'max_total_fat') }}g to {{ $ageCategory->maxCategoryIntake($gender, 'max_total_fat') }}g</i></h3>
                             <div class="flex items-center gap-x-2 w-32 mt-1">
-                                <x-input type="number" step=".1" name="max_total_fat" value="{{ $user->intakeProfile->max_total_fat }}"/>
+                                <x-input type="number" step=".1" min="{{ $ageCategory->minCategoryIntake($gender, 'max_total_fat') }}" max="{{ $ageCategory->maxCategoryIntake($gender, 'max_total_fat') }}" name="max_total_fat" value="{{ $user->intakeProfile->max_total_fat }}"/>
                                 <p>g</p>
                             </div>
                         </div>
@@ -104,21 +104,21 @@
                         <div>
                             <h3>Amber boundary</h3>
                             <div class="flex items-center gap-x-2 w-32 mt-1">
-                                <x-input class="w-24" type="number" step=".1" name="med_saturated_fat_boundary" value="{{ $user->intakeProfile->med_saturated_fat_boundary }}"/>
+                                <x-input class="w-24" type="number" step=".1" min="0" name="med_saturated_fat_boundary" value="{{ $user->intakeProfile->med_saturated_fat_boundary }}"/>
                                 <p class="text-sm">g per 100g</p>
                             </div>
                         </div>
                         <div>
                             <h3>Red boundary</h3>
                             <div class="flex items-center gap-x-2 w-32 mt-1">
-                                <x-input class="w-24" type="number" step=".1" name="high_saturated_fat_boundary" value="{{ $user->intakeProfile->high_saturated_fat_boundary }}"/>
+                                <x-input class="w-24" type="number" step=".1" min="0" name="high_saturated_fat_boundary" value="{{ $user->intakeProfile->high_saturated_fat_boundary }}"/>
                                     <p class="text-sm">g per 100g</p>
                                 </div>
                             </div>
                         <div>
                             <h3>Daily maximum <i class="text-xs text-gray-700">{{ $ageCategory->minCategoryIntake($gender, 'max_saturated_fat') }}g to {{ $ageCategory->maxCategoryIntake($gender, 'max_saturated_fat') }}g</i></h3>
                             <div class="flex items-center gap-x-2 w-32 mt-1">
-                                <x-input type="number" step=".1" name="max_saturated_fat" value="{{ $user->intakeProfile->max_saturated_fat }}"/>
+                                <x-input type="number" step=".1" min="{{ $ageCategory->minCategoryIntake($gender, 'max_saturated_fat') }}" max="{{ $ageCategory->maxCategoryIntake($gender, 'max_saturated_fat') }}" name="max_saturated_fat" value="{{ $user->intakeProfile->max_saturated_fat }}"/>
                                 <p>g</p>
                             </div>
                         </div>
@@ -142,21 +142,21 @@
                         <div>
                             <h3>Amber boundary</h3>
                             <div class="flex items-center gap-x-2 w-32 mt-1">
-                                <x-input class="w-24" type="number" step=".1" name="med_total_sugar_boundary" value="{{ $user->intakeProfile->med_total_sugar_boundary }}"/>
+                                <x-input class="w-24" type="number" step=".1" min="0" name="med_total_sugar_boundary" value="{{ $user->intakeProfile->med_total_sugar_boundary }}"/>
                                 <p class="text-sm">g per 100g</p>
                             </div>
                         </div>
                         <div>
                             <h3>Red boundary</h3>
                             <div class="flex items-center gap-x-2 w-32 mt-1">
-                                <x-input class="w-24" type="number" step=".1" name="high_total_sugar_boundary" value="{{ $user->intakeProfile->high_total_sugar_boundary }}"/>
+                                <x-input class="w-24" type="number" step=".1" min="0" name="high_total_sugar_boundary" value="{{ $user->intakeProfile->high_total_sugar_boundary }}"/>
                                     <p class="text-sm">g per 100g</p>
                                 </div>
                             </div>
                         <div>
                             <h3>Daily maximum <i class="text-xs text-gray-700">{{ $ageCategory->minCategoryIntake($gender, 'max_total_sugar') }}g to {{ $ageCategory->maxCategoryIntake($gender, 'max_total_sugar') }}g</i></h3>
                             <div class="flex items-center gap-x-2 w-32 mt-1">
-                                <x-input type="number" step=".1" name="max_total_sugar" value="{{ $user->intakeProfile->max_total_sugar }}"/>
+                                <x-input type="number" step=".1" name="max_total_sugar" min="{{ $ageCategory->minCategoryIntake($gender, 'max_total_sugar') }}" max="{{ $ageCategory->maxCategoryIntake($gender, 'max_total_sugar') }}" value="{{ $user->intakeProfile->max_total_sugar }}"/>
                                 <p>g</p>
                             </div>
                         </div>
@@ -180,21 +180,21 @@
                         <div>
                             <h3>Amber boundary</h3>
                             <div class="flex items-center gap-x-2 w-32 mt-1">
-                                <x-input class="w-24" type="number" step=".1" name="med_salt_boundary" value="{{ $user->intakeProfile->med_salt_boundary }}"/>
+                                <x-input class="w-24" type="number" step=".1" min="0" name="med_salt_boundary" value="{{ $user->intakeProfile->med_salt_boundary }}"/>
                                 <p class="text-sm">g per 100g</p>
                             </div>
                         </div>
                         <div>
                             <h3>Red boundary</h3>
                             <div class="flex items-center gap-x-2 w-32 mt-1">
-                                <x-input class="w-24" type="number" step=".1" name="high_salt_boundary" value="{{ $user->intakeProfile->high_salt_boundary }}"/>
+                                <x-input class="w-24" type="number" step=".1" min="0" name="high_salt_boundary" value="{{ $user->intakeProfile->high_salt_boundary }}"/>
                                     <p class="text-sm">g per 100g</p>
                                 </div>
                             </div>
                         <div>
                             <h3>Daily maximum <i class="text-xs text-gray-700">{{ $ageCategory->minCategoryIntake($gender, 'max_salt') }}g to {{ $ageCategory->maxCategoryIntake($gender, 'max_salt') }}g</i></h3>
                             <div class="flex items-center gap-x-2 w-32 mt-1">
-                                <x-input type="number" step=".1" name="max_salt" value="{{ $user->intakeProfile->max_salt }}"/>
+                                <x-input type="number" step=".1" name="max_salt" min="{{ $ageCategory->minCategoryIntake($gender, 'max_salt') }}" max="{{ $ageCategory->maxCategoryIntake($gender, 'max_salt') }}" value="{{ $user->intakeProfile->max_salt }}"/>
                                 <p>g</p>
                             </div>
                         </div>
