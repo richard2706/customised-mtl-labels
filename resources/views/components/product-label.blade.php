@@ -93,7 +93,11 @@
         </div>
     </div>
 
-    <p>of your customised intake</p>
+    @auth
+        <p>of your customised intake</p>
+    @else
+        <p>of the reference intake</p>
+    @endauth
         
     <div>
         <p class="text-sm">Energy per 100{{ $productUnits }}:
