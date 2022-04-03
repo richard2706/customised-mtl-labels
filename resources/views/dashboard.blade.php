@@ -7,9 +7,9 @@
         <p>Hello, {{ Auth::user()->name }}.</p>
 
         @if ($scanHistoryEntries->count() > 0)
-            <div class="flex flex-col gap-y-2 mt-4 w-fit max-w-xl">
-                <h1 class="text-lg text-center font-bold">Previously Scanned Products</h1>
+            <h1 class="text-lg text-center font-bold mt-4">Previously Scanned Products</h1>
 
+            <div class="flex flex-col gap-y-2 mt-1 w-fit max-w-xl">
                 @foreach ($scanHistoryEntries as $i => $entry)
                     @if ($i == 0 || !($entry->year == $scanHistoryEntries[$i - 1]->year
                             && $entry->month == $scanHistoryEntries[$i - 1]->month
