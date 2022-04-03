@@ -6,7 +6,7 @@
     <div class="flex flex-col items-center -mt-4 sm:mt-0 short:pb-16 gap-y-4">
         <div class="flex items-center justify-center relative -mx-2">
             <barcode-reader class="z-0"></barcode-reader>
-            <div v-if="scannedBarcode != -1" class="z-10 absolute bg-white text-center py-2 px-3 shadow-lg">
+            <div v-show="scannedBarcode != -1" class="z-10 absolute bg-white text-xl text-center py-2 px-3 shadow-lg">
                 <p>@{{ scannedBarcode }}</p>
             </div>
         </div>
@@ -16,6 +16,7 @@
             <ul class="ml-4 list-disc">
                 <li>Rotating the barcode so the lines are vertical.</li>
                 <li>Holding the barcode closer to the camera.</li>
+                <li>Making sure the camera focusses on the barcode.</li>
             </ul>
         </div>
         
