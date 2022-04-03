@@ -54,9 +54,10 @@ class ProductController extends Controller
                     'product_name' => $productName
                 ]);
             }
+            $portionSizeSpecified = array_key_exists('serving_size', $product);
         }
 
-        return view('product.show', compact('barcode', 'productFound', 'productName', 'numPortions'));
+        return view('product.show', compact('barcode', 'productFound', 'productName', 'numPortions', 'portionSizeSpecified'));
     }
     
     /**

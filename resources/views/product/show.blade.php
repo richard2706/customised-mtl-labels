@@ -11,15 +11,17 @@
                 <p class="text-center max-w-lg">Log in to customise the traffic light nutrition label to your nutritional needs.</p>
             @endguest
 
-            <form method="POST" action="{{ route('product.find') }}" id="num-portions-form" class="max-w-xs">
-                @csrf
-                <input type="text" name="barcode" value="{{ $barcode }}" hidden>
-                <x-label>Number of Portions:</x-label>
-                <div class="flex flex-row justify-center items-center space-x-2 mt-1">
-                    <x-input type="number" min="1" name="numPortions" value="{{ $numPortions }}" placeholder="Number of Portions" required/>
-                    <x-button-submit form="num-portions-form" class="max-w-max">Update Label</x-button>
-                </div>
-            </form>
+            @if ($portionSizeSpecified)
+                <form method="POST" action="{{ route('product.find') }}" id="num-portions-form" class="max-w-xs">
+                    @csrf
+                    <input type="text" name="barcode" value="{{ $barcode }}" hidden>
+                    <x-label>Number of Portions:</x-label>
+                    <div class="flex flex-row justify-center items-center space-x-2 mt-1">
+                        <x-input type="number" min="1" name="numPortions" value="{{ $numPortions }}" placeholder="Number of Portions" required/>
+                        <x-button-submit form="num-portions-form" class="max-w-max">Update Label</x-button>
+                    </div>
+                </form>
+            @endif
         @else
             <p>The product could not be identified.</p>
             <i>Barcode number: #{{ $barcode }}</i>
