@@ -35,6 +35,8 @@
                     </div>
                 @endforeach
             </div>
+        @else
+            <x-user-guide class="mt-4"></x-user-guide>
         @endif
     </div>
 
