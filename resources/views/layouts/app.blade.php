@@ -28,7 +28,7 @@
                     @auth
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <a onclick="event.preventDefault(); this.closest('form').submit();"
+                            <a onclick="event.preventDefault(); this.closest('form').submit();" href="#"
                                 class="text-gray-800 border-2 border-gray-800 py-1 px-2 sm:hover:bg-black sm:hover:bg-opacity-10 focus:ring focus:ring-black focus:ring-opacity-25">
                                 Log out
                             </a>
