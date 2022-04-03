@@ -25,17 +25,13 @@
                         </div>
                     @endif
 
-                    <div class="flex items-center gap-x-2">
-                        <div class="flex items-center gap-x-2 border-2 border-gray-300 w-full p-2">
-                            <div>
-                                <h2 class="font-bold">{{ $entry->product_name }}</h2>
-                                <i class="text-xs">#{{ $entry->barcode }}</i>
-                            </div>
-                            <div class="w-24 ml-auto text-right">
-                                <p class="text-sm">{{ $entry->hour }}:{{ $entry->minute }}:{{ $entry->second }}</p>
-                            </div>
+                    <div class="flex flex-col xs:flex-row xs:items-center gap-y-1 gap-x-3 border-2 border-gray-300 w-full p-2">
+                        <p class="text-sm">{{ $entry->hour }}:{{ $entry->minute }}</p>
+                        <div>
+                            <h2 class="font-bold">{{ $entry->product_name }}</h2>
+                            <i class="text-xs">#{{ $entry->barcode }}</i>
                         </div>
-                        <x-button-secondary width="xs:min-w-max" class="ml-auto" href="{{ route('product.show', ['barcode' => $entry->barcode]) }}">View Nutrition Label</x-button-secondary>
+                        <x-button-secondary class="xs:max-w-max mt-1 xs:mt-0 ml-auto" href="{{ route('product.show', ['barcode' => $entry->barcode]) }}">View Label</x-button-secondary>
                     </div>
                 @endforeach
             </div>
