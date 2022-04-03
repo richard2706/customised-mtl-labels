@@ -12,15 +12,17 @@
             @endguest
 
             @if ($portionSizeSpecified)
-                <form method="POST" action="{{ route('product.find') }}" id="num-portions-form" class="max-w-xs">
-                    @csrf
-                    <input type="text" name="barcode" value="{{ $barcode }}" hidden>
+                <div>
                     <p>Number of Portions:</p>
-                    <div class="flex flex-row justify-center items-center space-x-2 mt-1">
-                        <x-input type="number" min="1" name="numPortions" value="{{ $numPortions }}" placeholder="Number of Portions" required/>
-                        <x-button-submit form="num-portions-form" class="max-w-max">Update Label</x-button>
-                    </div>
-                </form>
+                    <form method="POST" action="{{ route('product.find') }}" id="num-portions-form" class="max-w-xs">
+                        @csrf
+                        <input type="text" name="barcode" value="{{ $barcode }}" hidden>
+                        <div class="flex flex-row justify-center items-center space-x-2 mt-1">
+                            <x-input type="number" step=".05" min="0.05" name="numPortions" value="{{ $numPortions }}" placeholder="Number of Portions" required/>
+                            <x-button-submit form="num-portions-form" class="max-w-max">Update Label</x-button>
+                        </div>
+                    </form>
+                </div>
             @else
                 <p>Unable to determine portion size. The label is for 100 g/ml.</p>
             @endif

@@ -20,8 +20,11 @@ class ProductLabel extends Component
     /** Barcode number of the product. */
     public $barcode;
 
-    /** Size of each portion of the product. */
-    public $portionSize;
+    /** Size of a single portion of the product */
+    public $singlePortionSize;
+
+    /** Size of the displayed portion of the product. */
+    public $displayedPortionSize;
 
     /** Number of portions for which the traffic light label shows nutritional information. */
     public $numPortions;
@@ -72,20 +75,19 @@ class ProductLabel extends Component
                 $this->nutrientValues[$key] = array_key_exists($key, $product['nutriments']) ? floatval($product['nutriments'][$key]) : null;
             }
 
-            
             // Adjust label values for specified number of portions (if portion size info available)
             $this->portionSizeSpecified = array_key_exists('serving_size', $product);
-            // dd($this->portionSizeSpecified);/
-            $this->numPortions = $this->portionSizeSpecified && $numPortions >= 1 ? $numPortions : 1;
-            $this->portionSize = $this->portionSizeSpecified ? floatval($product['serving_size']) : 100;
+            $this->numPortions = $this->portionSizeSpecified && $numPortions > 0 ? $numPortions : 1;
+            $this->singlePortionSize = $this->portionSizeSpecified ? floatval($product['serving_size']) : 100;
+            $this->displayedPortionSize = $this->portionSizeSpecified
+                    ? $numPortions * $this->singlePortionSize : $this->singlePortionSize;
             if ($this->portionSizeSpecified) {
                 foreach ($this->nutrientValues as $key => $value) {
                     if (!is_null($value)) {
-                        $this->nutrientValues[$key] *= $numPortions * $this->portionSize / 100;
+                        $this->nutrientValues[$key] *= $numPortions * $this->singlePortionSize / 100;
                     }
                 }
-            }
-
+            } // otherwise nutrientValues are already per 100g/ml
 
             // Determine colour category for each nutrient (based on per 100g info)
             $currentUser = Auth::user();

@@ -5,11 +5,11 @@
     </div>
 
     @if ($portionSizeSpecified && $numPortions == 1)
-        <p>A <span class="font-bold">{{ $portionSize }} {{ $productUnits }}</span> portion contains:</p>
-    @elseif ($portionSizeSpecified && $numPortions > 1)
-        <p><span class="font-bold">{{ $numPortions * $portionSize }} {{ $productUnits }}</span> ({{ $numPortions }} {{ $portionSize }} {{ $productUnits }} portions) contains:</p>
+        <p>A <span class="font-bold">{{ $displayedPortionSize }} {{ $productUnits }}</span> portion contains:</p>
+    @elseif ($portionSizeSpecified)
+        <p><span class="font-bold">{{ $displayedPortionSize }} {{ $productUnits }}</span> ({{ $numPortions }} {{ $singlePortionSize }} {{ $productUnits }} portions) contains:</p>
     @else
-        <p><span class="font-bold">{{ $portionSize }} {{ $productUnits }}</span> contains:</p>
+        <p><span class="font-bold">{{ $displayedPortionSize }} {{ $productUnits }}</span> contains:</p>
     @endif
 
     <div class="flex flex-wrap justify-center items-center gap-1">
