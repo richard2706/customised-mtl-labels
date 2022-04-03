@@ -49,7 +49,7 @@ class ProductController extends Controller
 
         // Add to scan history if current product is different to previous product
         if ($productFound && Auth::user()) {
-            $mostRecentScan = ScanHistory::orderBy('created_at', 'desc')->first();
+            $mostRecentScan = Auth::user()->scanHistoryEntries()->orderBy('created_at', 'desc')->first();
             if (!isset($mostRecentScan) || $barcode != $mostRecentScan->barcode) {
                 Auth::user()->scanHistoryEntries()->create([
                     'barcode' => $barcode,
