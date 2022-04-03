@@ -45,9 +45,10 @@ class ProductController extends Controller
 
         $productFound = !empty($product);
         $productName = $productFound ? $product['product_name'] : 'Invalid barcode';
+        $portionSizeSpecified = array_key_exists('serving_size', $product);
 
         // Add to scan history if current product is different to previous product
-        if ($productFound) {
+        if ($productFound && Auth::user()) {
             $mostRecentScan = ScanHistory::orderBy('created_at', 'desc')->first();
             if (!isset($mostRecentScan) || $barcode != $mostRecentScan->barcode) {
                 Auth::user()->scanHistoryEntries()->create([
@@ -55,7 +56,6 @@ class ProductController extends Controller
                     'product_name' => $productName,
                 ]);
             }
-            $portionSizeSpecified = array_key_exists('serving_size', $product);
         }
 
         return view('product.show', compact('barcode', 'productFound', 'productName', 'numPortions', 'portionSizeSpecified'));
