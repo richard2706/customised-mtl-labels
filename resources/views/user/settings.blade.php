@@ -12,17 +12,17 @@
             @csrf
             
             <div class="flex flex-col items-center max-w-sm">
-                <h1 class="text-lg font-bold">Your Details</h1>
+                <h1 class="text-xl font-bold">Your Details</h1>
 
                 <div class="w-full">
                     <x-label for="name">Name</x-label>
                     <x-input type="text" name="name" value="{{ $user->name }}"/>
                 </div>
 
-                <div class="w-full flex flex-col xs:flex-row gap-x-2">
-                    <div class="w-full mt-2">
+                <div class="w-full flex flex-col xs:flex-row gap-x-3 mt-3">
+                    <div class="w-full">
                         <x-label for="gender">Gender</x-label>
-                        <select name="gender" class="w-full box-border border-2 border-nutrient-med focus:border-nutrient-med focus:ring focus:ring-nutrient-med focus:ring-opacity-50">
+                        <select name="gender" class="w-full box-border border-4 border-nutrient-med focus:border-nutrient-med focus:ring focus:ring-nutrient-med focus:ring-opacity-50">
                             @foreach (array_column(App\Enums\Gender::cases(), 'value') as $genderValue)
                             <option value="{{ $genderValue }}" @if ($user->gender == $genderValue) selected @endif class="">
                                 {{ ucfirst($genderValue) }}
@@ -31,9 +31,9 @@
                         </select>
                     </div>
                     
-                    <div class="w-full mt-2">
+                    <div class="w-full">
                         <x-label for="age_category">Age Category</x-label>
-                        <select name="age_category" class="w-full box-border border-2 border-nutrient-med focus:border-nutrient-med focus:ring focus:ring-nutrient-med focus:ring-opacity-50">
+                        <select name="age_category" class="w-full box-border border-4 border-nutrient-med focus:border-nutrient-med focus:ring focus:ring-nutrient-med focus:ring-opacity-50">
                             @foreach (array_column(App\Enums\AgeCategory::cases(), 'value') as $ageCategoryValue)
                                 <option value="{{ $ageCategoryValue }}" @if (strcmp($user->age_category, $ageCategoryValue) == 0) selected @endif class="focus:bg-gray-200">
                                     {{ $ageCategoryValue }}
@@ -44,11 +44,13 @@
                 </div>
             </div>
 
-            <div class="flex flex-col mt-8 gap-y-4 w-full max-w-xl">
-                <h1 class="text-lg text-center font-bold">Your Intake Profile</h1>
+            <div class="flex flex-col items-center mt-8 gap-y-4 w-full max-w-xl">
+                <h1 class="text-xl text-center font-bold">Your Intake Profile</h1>
+
+                <x-button-submit form="reset-user-form">Reset All to the Reference Intake</x-button-submit>
 
                 <div class="w-full p-2 border-2 border-gray-300">
-                    <h2 class="font-bold">Calories</h2>
+                    <h2 class="text-md font-bold">Calories</h2>
                     <div class="flex justify-center">
                         <div>
                             <h3>Daily maximum <i class="text-xs text-gray-700">{{ $ageCategory->minCategoryIntake($gender, 'max_calories') }}kcal to {{ $ageCategory->maxCategoryIntake($gender, 'max_calories') }}kcal</i></h3>
@@ -61,8 +63,8 @@
                 </div>
 
                 <div class="w-full p-2 border-2 border-gray-300">
-                    <h2 class="font-bold">Total fat</h2>
-                    <div class="flex flex-wrap justify-center gap-x-4 gap-y-2 mt-0.5">
+                    <h2 class="text-md font-bold">Total fat</h2>
+                    <div class="flex flex-wrap justify-center gap-x-4 gap-y-2">
                         <div>
                             <h3>Amber boundary</h3>
                             <div class="flex items-center gap-x-2 w-32 mt-1">
@@ -85,7 +87,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-row h-8 w-full mt-2">
+                    <div class="flex flex-row h-8 w-full mt-4">
                         <div class="flex flex-row-reverse items-center bg-nutrient-low px-0.5" style="width: {{ 100 * $user->intakeProfile->med_total_fat_boundary / $user->intakeProfile->max_total_fat }}%">
                             <p class="text-right hidden xs:block overflow-hidden">{{ $user->intakeProfile->med_total_fat_boundary }}g</p>
                         </div>
@@ -99,8 +101,8 @@
                 </div>
 
                 <div class="w-full p-2 border-2 border-gray-300">
-                    <h2 class="font-bold">Saturated fat</h2>
-                    <div class="flex flex-wrap justify-center gap-x-4 gap-y-2 mt-0.5">
+                    <h2 class="text-md font-bold">Saturated fat</h2>
+                    <div class="flex flex-wrap justify-center gap-x-4 gap-y-2">
                         <div>
                             <h3>Amber boundary</h3>
                             <div class="flex items-center gap-x-2 w-32 mt-1">
@@ -123,7 +125,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-row h-8 w-full mt-2">
+                    <div class="flex flex-row h-8 w-full mt-4">
                         <div class="flex flex-row-reverse items-center bg-nutrient-low px-0.5" style="width: {{ 100 * $user->intakeProfile->med_saturated_fat_boundary / $user->intakeProfile->max_saturated_fat }}%">
                             <p class="text-right hidden xs:block overflow-hidden">{{ $user->intakeProfile->med_saturated_fat_boundary }}g</p>
                         </div>
@@ -137,8 +139,8 @@
                 </div>
 
                 <div class="w-full p-2 border-2 border-gray-300">
-                    <h2 class="font-bold">Total Sugar</h2>
-                    <div class="flex flex-wrap justify-center gap-x-4 gap-y-2 mt-0.5">
+                    <h2 class="text-md font-bold">Total Sugar</h2>
+                    <div class="flex flex-wrap justify-center gap-x-4 gap-y-2">
                         <div>
                             <h3>Amber boundary</h3>
                             <div class="flex items-center gap-x-2 w-32 mt-1">
@@ -161,7 +163,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-row h-8 w-full mt-2">
+                    <div class="flex flex-row h-8 w-full mt-4">
                         <div class="flex flex-row-reverse items-center bg-nutrient-low px-0.5" style="width: {{ 100 * $user->intakeProfile->med_total_sugar_boundary / $user->intakeProfile->max_total_sugar }}%">
                             <p class="text-right hidden xs:block overflow-hidden">{{ $user->intakeProfile->med_total_sugar_boundary }}g</p>
                         </div>
@@ -175,8 +177,8 @@
                 </div>
 
                 <div class="w-full p-2 border-2 border-gray-300">
-                    <h2 class="font-bold">Salt</h2>
-                    <div class="flex flex-wrap justify-center gap-x-4 gap-y-2 mt-0.5">
+                    <h2 class="text-md font-bold">Salt</h2>
+                    <div class="flex flex-wrap justify-center gap-x-4 gap-y-2">
                         <div>
                             <h3>Amber boundary</h3>
                             <div class="flex items-center gap-x-2 w-32 mt-1">
@@ -199,7 +201,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-row h-8 w-full mt-2">
+                    <div class="flex flex-row h-8 w-full mt-4">
                         <div class="flex flex-row-reverse items-center bg-nutrient-low px-0.5" style="width: {{ 100 * $user->intakeProfile->med_salt_boundary / $user->intakeProfile->max_salt }}%">
                             <p class="text-right hidden xs:block overflow-hidden">{{ $user->intakeProfile->med_salt_boundary }}g</p>
                         </div>
@@ -223,7 +225,7 @@
             </x-slot>
         </form>
 
-        <form method="POST" action="{{ route('user.update', compact('user')) }}" onsubmit="return confirm('Are you sure you would like to reset your settings?');" id="reset-user-form" class="mt-4">
+        <form method="POST" action="{{ route('user.update', compact('user')) }}" onsubmit="return confirm('Are you sure you would like to reset your settings?');" id="reset-user-form">
             @csrf
             
             <input type="text" name="name" value="{{ $user->name }}" hidden>
@@ -247,12 +249,10 @@
             <input type="number" step="0.1" name="med_salt_boundary" value="0.3" hidden>
             <input type="number" step="0.1" name="high_salt_boundary" value="1.5" hidden>
             <input type="number" step="0.1" name="max_salt" value="6" hidden>
-
-            <x-button-submit form="reset-user-form">Reset All to the Reference Intake</x-button-submit>
         </form>
 
         <div class="mt-8 max-w-xl">
-            <h1 class="text-center text-lg font-bold">Credits</h1>
+            <h1 class="text-center text-xl font-bold">Credits</h1>
             <div class="flex flex-col gap-y-4 mt-2">
                 <div class="flex flex-col gap-y-1">
                     <p>Barcode reader implemented using <span class="font-bold">vue-barcode-reader</span> by Dmytro Olefyrenko and others.</p>

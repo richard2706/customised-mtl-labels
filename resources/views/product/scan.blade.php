@@ -21,8 +21,8 @@
         
         <form method="POST" action="{{ route('product.find') }}" id="barcode-num-form" class="w-full max-w-sm">
             @csrf
-            <div class="flex flex-row justify-center space-x-2">
-                <x-input type="text" name="barcode" value="" placeholder="Manually Enter Barcode" required/>
+            <div class="flex flex-row space-x-2">
+                <x-input type="text" name="barcode" value="" placeholder="Manually Enter Barcode" color="nutrient-high" required/>
                 <x-button-submit form="barcode-num-form" class="max-w-max">Done</x-button>
             </div>
         </form>

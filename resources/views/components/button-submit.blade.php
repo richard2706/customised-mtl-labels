@@ -1,5 +1,7 @@
-<button {{ $attributes->merge(['type' => 'submit', 'class' => 'w-full max-w-sm box-border bg-nutrient-high text-center text-white focus:ring focus:ring-nutrient-high focus:ring-opacity-50']) }}>
-    <div class="py-2 px-3 sm:hover:bg-black sm:hover:bg-opacity-25">
+@props(['color' => 'nutrient-high', 'textcolor' => 'white'])
+
+<button {{ $attributes->merge(['type' => 'submit', 'class' => 'w-full max-w-sm box-border text-' . $textcolor . ' bg-' . $color . ' text-center text-white focus:ring focus:ring-' . $color . ' focus:ring-opacity-50']) }}>
+    <div class="py-2.5 px-4 w-full h-full sm:hover:bg-black sm:hover:bg-opacity-25">
         {{ $slot }}
     </div>
 </button>

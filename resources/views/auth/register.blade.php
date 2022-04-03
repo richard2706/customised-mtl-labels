@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="title">Create Account</x-slot>
 
-    <div class="flex flex-col items-center short:pb-32">
+    <div class="flex flex-col items-center short:pb-16">
         
         <!-- Validation Errors -->
         @if ($errors->any() == 0)
@@ -48,8 +48,6 @@
 
             <x-slot name="footer">
                 <div class="flex flex-col items-center space-y-2 p-2">
-                    <x-button-secondary href="{{ route('login') }}">Login</x-button-secondary>
-    
                     <x-button-submit form="register-form">Create Account</x-button-submit>
                 </div>
             </x-slot>
