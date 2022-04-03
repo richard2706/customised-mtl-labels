@@ -41,6 +41,7 @@
             </div>
         @else
             <x-user-guide></x-user-guide>
+            <p class="text-center max-w-xl">A history of your scanned products will appear here once you've scanned a barcode. <b>Click "Scan a Barcode" to get started!</b></p>
         @endif
     </div>
 
