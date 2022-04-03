@@ -16,6 +16,14 @@ class ScanHistory extends Model
      */
     protected $fillable = [
         'barcode',
-        'product_name'
+        'product_name',
+        'user_id'
     ];
+
+    /**
+     * Gets the user who scanned this product.
+     */
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }

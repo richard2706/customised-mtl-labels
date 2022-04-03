@@ -16,6 +16,7 @@ class CreateScanHistoriesTable extends Migration
         Schema::create('scan_histories', function (Blueprint $table) {
             $table->string('barcode');
             $table->string('product_name');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
 
             $table->primary(['barcode', 'created_at']);

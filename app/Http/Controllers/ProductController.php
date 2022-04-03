@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ScanHistory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use OpenFoodFacts;
 
 class ProductController extends Controller
@@ -49,9 +50,9 @@ class ProductController extends Controller
         if ($productFound) {
             $mostRecentScan = ScanHistory::orderBy('created_at', 'desc')->first();
             if (!isset($mostRecentScan) || $barcode != $mostRecentScan->barcode) {
-                ScanHistory::create([
+                Auth::user()->scanHistoryEntries()->create([
                     'barcode' => $barcode,
-                    'product_name' => $productName
+                    'product_name' => $productName,
                 ]);
             }
             $portionSizeSpecified = array_key_exists('serving_size', $product);

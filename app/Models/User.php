@@ -50,4 +50,11 @@ class User extends Authenticatable
     public function intakeProfile() {
         return $this->hasOne(IntakeProfile::class);
     }
+
+    /**
+     * Gets the user's product scan history.
+     */
+    public function scanHistoryEntries() {
+        return $this->hasMany(ScanHistory::class);
+    }
 }
