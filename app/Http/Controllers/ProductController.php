@@ -40,23 +40,24 @@ class ProductController extends Controller
         $numPortions = $numPortions > 0 ? $numPortions : 1;
         // Check product exists
         $product = OpenFoodFacts::barcode($barcode);
+        // might need to use barcode property from product to ovewrite supplied barcode to remove possible errors
 
         $productFound = !empty($product);
         $productName = $productFound ? $product['product_name'] : 'Invalid barcode';
 
-        // Add to scan history
+        // Add to scan history if current product is different to previous product
         if ($productFound) {
-            // check that product not already most recently scanned (e.g. user just reloading page)
-            $historyEntry = ScanHistory::create([
-                'barcode' => $barcode,
-                'product_name' => $productName
-            ]);
+            $mostRecentScan = ScanHistory::orderBy('created_at', 'desc')->first();
+            if (!isset($mostRecentScan) || $barcode != $mostRecentScan->barcode) {
+                ScanHistory::create([
+                    'barcode' => $barcode,
+                    'product_name' => $productName
+                ]);
+            }
         }
 
         return view('product.show', compact('barcode', 'productFound', 'productName', 'numPortions'));
     }
-
-    // add function for barcode validation and checking product exists
     
     /**
      * Display a listing of the resource.
