@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\AgeCategory;
 use App\Enums\Gender;
+use App\Models\ScanHistory;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,6 +12,16 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
+    /**
+     * Show the user's dashboard showing their product scan history.
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function showDashboard() {
+        $scanHistoryEntries = ScanHistory::all();
+        return view('dashboard', compact('scanHistoryEntries'));
+    }
+
     /**
      * Display a listing of the resource.
      *

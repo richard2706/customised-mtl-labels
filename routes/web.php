@@ -19,9 +19,8 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [UserController::class, 'showDashboard'])
+    ->middleware(['auth'])->name('dashboard');
 
 Route::get('/settings', [UserController::class, 'edit'])
     ->middleware(['auth'])->name('user.settings');

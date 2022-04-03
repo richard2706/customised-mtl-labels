@@ -5,6 +5,9 @@
 
     <div class="flex flex-col items-center">
         <p>Hello, {{ Auth::user()->name }}.</p>
+        <div>
+            {{ $scanHistoryEntries }}
+        </div>
     </div>
 
     <x-slot name="footer">
