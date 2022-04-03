@@ -40,7 +40,7 @@ class ProductController extends Controller
         $numPortions = $numPortions > 0 ? $numPortions : 1;
         // Check product exists
         $product = OpenFoodFacts::barcode($barcode);
-        // might need to use barcode property from product to ovewrite supplied barcode to remove possible errors
+        $barcode = $product['code'] ?? $barcode;
 
         $productFound = !empty($product);
         $productName = $productFound ? $product['product_name'] : 'Invalid barcode';
