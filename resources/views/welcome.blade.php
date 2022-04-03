@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="short:pb-32">
+    <div class="flex justify-center short:pb-32">
         <x-user-guide></x-user-guide>
     </div>
 

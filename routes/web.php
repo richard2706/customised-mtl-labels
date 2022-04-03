@@ -19,6 +19,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+Route::get('/userguide', function() {
+    return view('userguide');
+})->name('userguide');
+
 Route::get('/dashboard', [UserController::class, 'showDashboard'])
     ->middleware(['auth'])->name('dashboard');
 
