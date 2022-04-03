@@ -21,6 +21,8 @@
                         <x-button-submit form="num-portions-form" class="max-w-max">Update Label</x-button>
                     </div>
                 </form>
+            @else
+                <p>Unable to determine portion size. The label is for 100 g/ml.</p>
             @endif
         @else
             <p>The product could not be identified.</p>
