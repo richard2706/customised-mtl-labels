@@ -19,12 +19,12 @@
     <body class="font-sans antialiased">
         <div class="min-h-screen" id="app">
             <!-- Navigation Bar -->
-            <nav class="fixed top-0 left-0 right-0 z-10 h-14 bg-nutrient-low shadow-lg px-4 sm:px-6 flex items-center">
+            <nav class="fixed top-0 left-0 right-0 z-10 h-14 bg-nutrient-low shadow-lg px-3 sm:px-6 flex items-center">
                 <h2 class="font-bold text-xl">
                     {{ $title ?? config('app.name', 'Laravel') }}
                 </h2>
 
-                <div class="ml-auto content-center">
+                <div class="min-w-max ml-auto pl-2 content-center">
                     @auth
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
