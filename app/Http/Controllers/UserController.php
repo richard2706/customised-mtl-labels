@@ -18,7 +18,19 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function showDashboard() {
-        $scanHistoryEntries = ScanHistory::all();
+        $scanHistoryEntries = ScanHistory::orderBy('created_at', 'desc')->get();
+
+        // Split created time and date into atomic values
+        foreach ($scanHistoryEntries as $entry => $data) {
+            $dateTime = preg_split("/[-\s:]/", $data->created_at);
+            $data['year'] = $dateTime[0];
+            $data['month'] = $dateTime[1];
+            $data['day'] = $dateTime[2];
+            $data['hour'] = $dateTime[3];
+            $data['minute'] = $dateTime[4];
+            $data['second'] = $dateTime[5];
+        }
+
         return view('dashboard', compact('scanHistoryEntries'));
     }
 
