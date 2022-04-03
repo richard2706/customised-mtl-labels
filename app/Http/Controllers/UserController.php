@@ -18,7 +18,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function showDashboard() {
-        $scanHistoryEntries = ScanHistory::where('user_id', '=', Auth::user()->id)->orderBy('created_at', 'desc')->get();
+        $scanHistoryEntries = Auth::user()->scanHistoryEntries()->orderBy('created_at', 'desc')->get();
 
         // Split created time and date into atomic values
         foreach ($scanHistoryEntries as $entry => $data) {
