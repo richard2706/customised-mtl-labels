@@ -12,9 +12,9 @@
             @endguest
 
             @if ($portionSizeSpecified)
-                <div class="flex flex-col gap-y-2">
+                <div class="flex flex-col items-center gap-y-2">
                     <p>Choose a portion size:</p>
-                    <div class="flex flex-wrap gap-2">
+                    <div class="flex flex-wrap justify-center gap-2">
                         @if ($numPortions != 0.5)
                             <form method="POST" action="{{ route('product.find') }}" id="half-portion-form" class="max-w-xs">
                                 @csrf
