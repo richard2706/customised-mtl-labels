@@ -12,14 +12,53 @@
             @endguest
 
             @if ($portionSizeSpecified)
-                <div>
-                    <p>Number of Portions:</p>
+                <div class="flex flex-col gap-y-2">
+                    <p>Choose a portion size:</p>
+                    <div class="flex flex-wrap gap-2">
+                        @if ($numPortions != 0.5)
+                            <form method="POST" action="{{ route('product.find') }}" id="half-portion-form" class="max-w-xs">
+                                @csrf
+                                <input type="number" step=".05" name="numPortions" value="0.5" hidden required/>
+                                <input type="text" name="barcode" value="{{ $barcode }}" hidden>
+                                <x-button-submit-secondary form="half-portion-form" class="max-w-max">1/2 portion</x-button-submit-secondary>
+                            </form>
+                        @endif
+
+                        @if ($numPortions != 0.75)
+                            <form method="POST" action="{{ route('product.find') }}" id="three-quarter-portion-form" class="max-w-xs">
+                                @csrf
+                                <input type="number" step=".05" name="numPortions" value="0.75" hidden required/>
+                                <input type="text" name="barcode" value="{{ $barcode }}" hidden>
+                                <x-button-submit-secondary form="three-quarter-portion-form" class="max-w-max">3/4 portion</x-button-submit-secondary>
+                            </form>
+                        @endif
+
+                        @if ($numPortions != 1)
+                            <form method="POST" action="{{ route('product.find') }}" id="one-portion-form" class="max-w-xs">
+                                @csrf
+                                <input type="number" step=".05" name="numPortions" value="1" hidden required/>
+                                <input type="text" name="barcode" value="{{ $barcode }}" hidden>
+                                <x-button-submit-secondary form="one-portion-form" class="max-w-max">1 portion</x-button-submit-secondary>
+                            </form>
+                        @endif
+
+                        @if ($numPortions != 2)
+                            <form method="POST" action="{{ route('product.find') }}" id="two-portions-form" class="max-w-xs">
+                                @csrf
+                                <input type="number" step=".05" name="numPortions" value="2" hidden required/>
+                                <input type="text" name="barcode" value="{{ $barcode }}" hidden>
+                                <x-button-submit-secondary form="two-portions-form" class="max-w-max">2 portions</x-button-submit-secondary>
+                            </form>
+                        @endif
+                    </div>
+
+                    <p>Or enter the number of portions:</p>
                     <form method="POST" action="{{ route('product.find') }}" id="num-portions-form" class="max-w-xs">
                         @csrf
-                        <input type="text" name="barcode" value="{{ $barcode }}" hidden>
-                        <div class="flex flex-row justify-center items-center space-x-2 mt-1">
+                        <input type="text" name="barcode" value="{{ $barcode }}" hidden required>
+                        <div class="flex justify-center items-center space-x-2">
                             <x-input type="number" step=".05" min="0.05" name="numPortions" value="{{ $numPortions }}" placeholder="Number of Portions" required/>
-                            <x-button-submit form="num-portions-form" class="max-w-max">Update Label</x-button>
+                            <x-button-submit form="num-portions-form" class="max-w-max">Update Label</x-button-submit>
                         </div>
                     </form>
                 </div>
