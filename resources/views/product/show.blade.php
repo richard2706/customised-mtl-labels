@@ -57,7 +57,7 @@
                         @csrf
                         <input type="text" name="barcode" value="{{ $barcode }}" hidden required>
                         <div class="flex justify-center items-center space-x-2">
-                            <x-input type="number" step=".05" min="0.05" name="numPortions" value="{{ $numPortions }}" placeholder="Number of Portions" required/>
+                            <x-input color="nutrient-high" type="number" step=".05" min="0.05" name="numPortions" value="{{ $numPortions }}" placeholder="Number of Portions" required/>
                             <x-button-submit form="num-portions-form" class="max-w-max">Update Label</x-button-submit>
                         </div>
                     </form>
