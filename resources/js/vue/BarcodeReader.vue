@@ -8,10 +8,11 @@
         methods: {
             onLoaded() {
                 console.log('loaded')
+                this.$root.scannerLoaded = true;
             },
             onDecode(barcode) {
                 console.log(barcode);
-                this.$root.scannedBarcode = barcode
+                this.$root.scannedBarcode = barcode;
                 window.location.href = '/product/' + barcode;
             }
         }

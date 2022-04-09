@@ -10,6 +10,7 @@ createApp({
     data() {
         return {
             scannedBarcode: -1,
+            scannerLoaded: false
         }
     }
 }).mount('#app');

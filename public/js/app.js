@@ -52631,6 +52631,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     onLoaded: function onLoaded() {
       console.log('loaded');
+      this.$root.scannerLoaded = true;
     },
     onDecode: function onDecode(barcode) {
       console.log(barcode);
@@ -52688,7 +52689,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
   },
   data: function data() {
     return {
-      scannedBarcode: -1
+      scannedBarcode: -1,
+      scannerLoaded: false
     };
   }
 }).mount('#app');

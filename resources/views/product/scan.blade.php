@@ -6,12 +6,12 @@
     <div class="flex flex-col items-center -mt-4 sm:mt-0 short:pb-32 gap-y-4">
         <div class="flex items-center justify-center relative -mx-2">
             <barcode-reader class="z-0"></barcode-reader>
-            <div v-show="scannedBarcode != -1" class="z-10 absolute bg-white text-xl text-center py-2 px-3 shadow-lg">
+            <div v-show="scannedBarcode != -1" style="display: none" class="z-10 absolute bg-white text-xl text-center py-2 px-3 shadow-lg">
                 <p>@{{ scannedBarcode }}</p>
             </div>
         </div>
 
-        <div>
+        <div v-show="scannerLoaded" style="display: none">
             <p>If the barcode if not scanning, please try</p>
             <ul class="ml-4 list-disc">
                 <li>Rotating the barcode so the lines are vertical.</li>
@@ -19,10 +19,9 @@
                 <li>Making sure the camera focusses on the barcode.</li>
             </ul>
         </div>
-        
-        {{-- <div vshow="scannerError">
-            <p>Sorry, the barcode scanner is not working.</p>
-        </div> --}}
+        <div v-show="!scannerLoaded">
+            <p>The camera is loading...</p>
+        </div>
     </div>
 
     <x-slot name="footer">
