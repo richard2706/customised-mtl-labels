@@ -3,7 +3,7 @@
         Scan a Barcode
     </x-slot>
 
-    <div class="flex flex-col items-center -mt-4 sm:mt-0 short:pb-16 gap-y-4">
+    <div class="flex flex-col items-center -mt-4 sm:mt-0 short:pb-32 gap-y-4">
         <div class="flex items-center justify-center relative -mx-2">
             <barcode-reader class="z-0"></barcode-reader>
             <div v-show="scannedBarcode != -1" class="z-10 absolute bg-white text-xl text-center py-2 px-3 shadow-lg">
@@ -20,17 +20,21 @@
             </ul>
         </div>
         
-        <form method="POST" action="{{ route('product.find') }}" id="barcode-num-form" class="w-full max-w-sm">
-            @csrf
-            <div class="flex flex-row space-x-2">
-                <x-input type="text" name="barcode" value="" placeholder="Manually Enter Barcode" color="nutrient-high" required/>
-                <x-button-submit form="barcode-num-form" class="max-w-max">Done</x-button>
-            </div>
-        </form>
+        {{-- <div vshow="scannerError">
+            <p>Sorry, the barcode scanner is not working.</p>
+        </div> --}}
     </div>
 
     <x-slot name="footer">
         <div class="flex flex-col items-center space-y-2 p-2">
+            <form method="POST" action="{{ route('product.find') }}" id="barcode-num-form" class="w-full max-w-sm">
+                @csrf
+                <div class="flex flex-row space-x-2">
+                    <x-input type="text" name="barcode" value="" placeholder="Manually Enter Barcode" color="nutrient-high" required/>
+                    <x-button-submit form="barcode-num-form" class="max-w-max">Done</x-button>
+                </div>
+            </form>
+
             @auth
                 <x-button-secondary href="{{ route('dashboard') }}">Back to Home</x-button-secondary>
             @else
