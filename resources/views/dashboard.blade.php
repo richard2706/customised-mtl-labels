@@ -34,7 +34,7 @@
                                 <h2 class="font-bold">{{ $entry->product_name }}</h2>
                                 <i class="text-xs">#{{ $entry->barcode }}</i>
                             </div>
-                            <x-button-secondary class="xs:max-w-max mt-1 xs:mt-0 ml-auto" href="{{ route('product.show', ['barcode' => $entry->barcode]) }}">View Label</x-button-secondary>
+                            <x-button-tertiary class="xs:max-w-max mt-1 xs:mt-0 ml-auto" href="{{ route('product.show', ['barcode' => $entry->barcode]) }}">View Label</x-button-tertiary>
                         </div>
                     @endforeach
                 </div>
