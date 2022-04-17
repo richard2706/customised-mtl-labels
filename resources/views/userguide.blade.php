@@ -10,7 +10,7 @@
     <x-slot name="footer">
         <div class="flex flex-col items-center space-y-2 p-2">
             @auth
-                <x-button-secondary href="{{ route('dashboard') }}">Back to Home</x-button-secondary>
+                <x-button-secondary href="{{ route('dashboard') }}">Back to Dashboard</x-button-secondary>
             @else
                 <x-button-secondary href="{{ route('welcome') }}">Back to Home</x-button-secondary>
             @endauth
