@@ -126,7 +126,6 @@ class ProductLabel extends Component
                     'high' => 1.5,
                 ]
             ];
-
             foreach (array_slice($allLabelKeys, -4) as $nutrient) {
                 if (is_null($this->nutrientValues[$nutrient])) {
                     $this->nutrientColourStyles[$nutrient] = 'bg-white'; // White
@@ -162,7 +161,6 @@ class ProductLabel extends Component
                 $allLabelKeys[4] => 90, // sugars
                 $allLabelKeys[5] => 6, // salt
             ];
-
             foreach ($this->nutrientValues as $key => $value) {
                 if (!is_null($value) && strcmp($key, $allLabelKeys[0]) != 0) {
                     $this->percentageIntakes[$key] = 100 * $this->nutrientValues[$key] / $userIntake[$key];

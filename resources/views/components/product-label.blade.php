@@ -22,17 +22,17 @@
                     @endif
                     @if (!is_null($nutrientValues['energy-kcal']))
                         <p class="text-sm">{{ round($nutrientValues['energy-kcal']) }} {{ $energyKcalUnits }}</p>
+                        <p>
+                            @if ($percentageIntakes['energy-kcal'] < 1)
+                                &lt;1%
+                            @else
+                                {{ round($percentageIntakes['energy-kcal']) }}%
+                            @endif
+                        </p>
                     @else
-                        <p class="text-xs">Unknown calories</p>
+                        <p class="text-xs">Unknown</p>
                     @endif
                 </div>
-                <p class="mt-auto">
-                    @if ($percentageIntakes['energy-kcal'] < 1)
-                        &lt;1%
-                    @else
-                        {{ round($percentageIntakes['energy-kcal']) }}%
-                    @endif
-                </p>
             </div>
 
             <div class="border border-black p-1.5 text-center flex flex-col {{ $nutrientColourStyles['fat'] }}">
