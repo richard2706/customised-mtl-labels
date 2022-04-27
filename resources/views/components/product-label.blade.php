@@ -14,7 +14,7 @@
         @endif
 
         <div class="flex flex-wrap justify-center items-center gap-1">
-            <div class="border border-black p-1.5 text-center flex flex-col">
+            <div class="@if (!is_null($nutrientValues['energy-kj']) || !is_null($nutrientValues['energy-kcal'])) border border-black @else border-dashed border-2 border-gray-400 @endif p-1.5 text-center flex flex-col">
                 <p class="text-sm">Energy</p>
                 <div class="flex flex-col">
                     @if (!is_null($nutrientValues['energy-kj']))
@@ -35,7 +35,7 @@
                 </div>
             </div>
 
-            <div class="border border-black p-1.5 text-center flex flex-col {{ $nutrientColourStyles['fat'] }}">
+            <div class="@if (!is_null($nutrientValues['fat'])) border border-black @else border-dashed border-2 border-gray-400 @endif p-1.5 text-center flex flex-col {{ $nutrientColourStyles['fat'] }}">
                 <p class="text-sm">Fat</p>
                 @if (!is_null($nutrientValues['fat']))
                     <p>{{ round($nutrientValues['fat'], 1) }} g</p>
@@ -51,7 +51,7 @@
                 @endif
             </div>
 
-            <div class="border border-black p-1.5 text-center flex flex-col {{ $nutrientColourStyles['saturated-fat'] }}">
+            <div class="@if (!is_null($nutrientValues['saturated-fat'])) border border-black @else border-dashed border-2 border-gray-400 @endif p-1.5 text-center flex flex-col {{ $nutrientColourStyles['saturated-fat'] }}">
                 <p class="text-sm">Saturates</p>
                 @if (!is_null($nutrientValues['saturated-fat']))
                     <p>{{ round($nutrientValues['saturated-fat'], 1) }} g</p>
@@ -67,7 +67,7 @@
                 @endif
             </div>
 
-            <div class="border border-black p-1.5 text-center flex flex-col {{ $nutrientColourStyles['sugars'] }}">
+            <div class="@if (!is_null($nutrientValues['sugars'])) border border-black @else border-dashed border-2 border-gray-400 @endif p-1.5 text-center flex flex-col {{ $nutrientColourStyles['sugars'] }}">
                 <p class="text-sm">Sugars</p>
                 @if (!is_null($nutrientValues['sugars']))
                     <p>{{ round($nutrientValues['sugars'], 1) }} g</p>
@@ -83,7 +83,7 @@
                 @endif
             </div>
 
-            <div class="border border-black p-1.5 text-center flex flex-col {{ $nutrientColourStyles['salt'] }}">
+            <div class="@if (!is_null($nutrientValues['salt'])) border border-black @else border-dashed border-2 border-gray-400 @endif p-1.5 text-center flex flex-col {{ $nutrientColourStyles['salt'] }}">
                 <p class="text-sm">Salt</p>
                 @if (!is_null($nutrientValues['salt']))
                     <p>{{ round($nutrientValues['salt'], 2) }} g</p>
