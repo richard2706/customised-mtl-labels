@@ -65,7 +65,7 @@ class ProductLabel extends Component
             ? 'ml' : 'g';
 
         $per100Keys = ['energy-kj_100g', 'energy-kcal_100g', 'fat_100g', 'saturated-fat_100g', 'sugars_100g', 'salt_100g'];
-        $per100Exists = $this->count_array_keys($per100Keys, $product['nutriments']) >= 4;
+        $per100Exists = $this->count_array_keys($per100Keys, $product['nutriments']) > 0;
         if ($per100Exists) {
             $this->labelSuccessful = true;
 
